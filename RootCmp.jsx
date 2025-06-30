@@ -12,6 +12,7 @@ export function RootCmp() {
     return <Router>
         <section className="root-cmp">
             <AppHeader />
+            {console.log('hi')}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
