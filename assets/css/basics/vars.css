@@ -1,13 +1,16 @@
 :root {
-    --bg1: lightblue;
-    --bg2: rgb(50, 160, 204);
-    --bg3: rgb(89, 134, 206);
-    
-    --color1: rgb(26, 115, 232);
-    --color2: rgb(24, 128, 56);
-    --color3: rgb(197, 34, 31);
 
-    --gray2: #aaa;
-    --gray2: #888;
-    --gray2: #333;
+    --main-bg-color: lightblue;
+    --shown-mail-bg-color: #f2f6fc;
+    --unshown-mail-bg-color: #ffffff;
+    --mail-side-menu: #f6f8fc;
+    --shadow-color: #c1c1c1;
+    --compose-mail-bg-color: #c2e7ff;
+    --selected-color: #d3e3fd;
+    --hover-color: #2021240d;
+    --search-color: #eaf1fb;
+    --details-border-color: #e0e0e0;
+    --keep-selected-color: #feefc3;
+
+    --layout-padding: 1.6rem
 }
