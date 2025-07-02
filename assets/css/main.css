@@ -8,6 +8,7 @@
 @import './basics/base.css';
 @import './basics/helpers.css';
 @import './basics/layout.css';
+@import '../css/icons/icons.css';
 
 /* Cmps */
 @import './cmps/home.css';
