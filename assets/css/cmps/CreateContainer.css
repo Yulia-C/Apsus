@@ -15,6 +15,7 @@
 .create-container input {
     border: none;
     height: 95%;
+    width: 70%;
     font-size: inherit;
     outline: none;
 }
@@ -27,6 +28,13 @@
     opacity: 0.5;
 }
 
+.create-container button:hover {
+    opacity: 0.8;
+    scale: 1.1;
+    transition: .3s;
+}
+
 .fa.active {
     opacity: 1;
+    scale: 1.1;
 }

@@ -4,12 +4,20 @@ const { useState } = React;
 
 export function CreateContainer() {
 
-    const [inputValue, setInputValue] = useState('hello');
+    const [createMode, setCreateMode] = useState('txt');
 
-    function onHandleState(event) {
-        console.log(event.target.id);
-        event.target.classList.remove
-        
+    function onHandleCreateMode(event) {
+        const currMode = event.target.id;
+
+        const activeElement = document.querySelector('.create-icons .active');
+        if (activeElement) {
+            activeElement.classList.remove('active');
+        }
+
+        event.target.classList.add('active');
+        setCreateMode(currMode);   
+        console.log(createMode);
+             
     }
 
 
@@ -17,11 +25,12 @@ export function CreateContainer() {
     return (
         <section className="create-container">
             <input type="text" name="input" placeholder="Note..." />
+
             <div className="create-icons">
-            <button id="txt" className="fa msg-icon" onClick={onHandleState}></button>
-            <button id="img" className="fa img-icon" onClick={onHandleState}></button>
-            <button id="film" className="fa film-icon" onClick={onHandleState}></button>
-            <button id="list" className="fa list-icon" onClick={onHandleState}></button>
+            <button id="txt" className="fa txt-icon active" onClick={onHandleCreateMode}></button>
+            <button id="img" className="fa img-icon" onClick={onHandleCreateMode}></button>
+            <button id="film" className="fa film-icon" onClick={onHandleCreateMode}></button>
+            <button id="list" className="fa list-icon" onClick={onHandleCreateMode}></button>
             </div>
 
         </section>

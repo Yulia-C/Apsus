@@ -7,8 +7,8 @@
     content: "\f0f3";
 }
 
-.fa.msg-icon::before {
-    content: "\f075";
+.fa.txt-icon::before {
+    content: "\f031";
 }
 
 .fa.img-icon::before {
