@@ -15,6 +15,7 @@
 @import './cmps/home.css';
 @import './cmps/UserMsg.css';
 @import './cmps/AppHeader.css';
+@import './cmps/CreateContainer.css';
 
 /* Keep */
 @import './apps/note/NoteIndex.css';

@@ -1,4 +1,16 @@
 
+import { CreateContainer } from "../cmps/CreateContainer.jsx";
+
+
 export function NoteIndex() {
-    return <section className="container">Notes app</section>
+    return (
+        <section className="note-index">
+
+        
+        <CreateContainer /> 
+
+
+
+        </section>
+    )
 }
