@@ -3,17 +3,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+    margin: 20px auto;
+    padding: 10px;
     border: solid 1px;
-    height: 50px;
+    border-radius: 1em;
+    height: 1.5em;
     font-size: 1.2em;  
-    width: 50%;
+    width: 70%;
 }
 
 .create-container input {
     border: none;
     height: 95%;
     font-size: inherit;
+    outline: none;
 }
 
 .create-container button {
@@ -21,4 +24,9 @@
     background-color: transparent;
     cursor: pointer;
     font-size: inherit;
+    opacity: 0.5;
+}
+
+.fa.active {
+    opacity: 1;
 }
