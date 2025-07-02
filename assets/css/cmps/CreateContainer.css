@@ -1,0 +1,24 @@
+
+.create-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    border: solid 1px;
+    height: 50px;
+    font-size: 1.2em;  
+    width: 50%;
+}
+
+.create-container input {
+    border: none;
+    height: 95%;
+    font-size: inherit;
+}
+
+.create-container button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: inherit;
+}

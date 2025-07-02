@@ -15,8 +15,8 @@
     content: "\f03e";
 }
 
-.fa.youtube-icon::before {
-    content: "\f167";
+.fa.film-icon::before {
+    content: "\f008";
 }
 
 .fa.list-icon::before {
