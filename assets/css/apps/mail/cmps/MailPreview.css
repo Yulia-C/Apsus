@@ -1,0 +1,12 @@
+.mail-preview td {
+    border-bottom: 1.5px solid var(--border-color);
+}
+
+.mail-preview:hover {
+    box-shadow: 0px 1px 5px 0px var(--shadow-color);
+}
+
+.unread.mail-preview .mail-subject,.mail-body,
+.mail-date {
+    font-weight: bold;
+}

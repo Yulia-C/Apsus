@@ -22,12 +22,12 @@
 
 /* Mail Pages*/
 @import './apps/mail/MailIndex.css';
-@import './apps/mail/MailList.css';
 @import './apps/mail/MailDetails.css';
 
 /* Mail Cmps */
 @import './apps/mail/cmps/MailFilter.css';
-@import './apps/mail/cmps/MailMenu.css';
+@import './apps/mail/cmps/MailList.css';
 @import './apps/mail/cmps/MailPreview.css';
+@import './apps/mail/cmps/MailMenu.css';
 
 /* MQ */

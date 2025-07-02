@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Filled");
 
 .icon::before {
-    padding: .5rem;
+    padding: .3rem;
     font-style: normal;
     font-variation-settings:
         'wght' 400,
@@ -11,6 +11,12 @@
     font-size: 24px;
     display: inline-block;
     vertical-align: middle;
+    object-fit: contain;
+}
+
+.icon.outlined:hover:not(.icon.search)::before {
+    background-color: var(--hover-color);
+    border-radius: 50%;
 }
 
 .icon.outlined::before {
@@ -32,8 +38,8 @@
 
 .icon.search::before {
     content: "search";
-    font-size: 36px;
-    margin-inline-start: .5rem;
+    font-size: 30px;
+    margin-inline-start: .7rem;
 }
 
 .icon.add::before {
@@ -50,6 +56,7 @@
 
 .icon.menu::before {
     content: "dehaze";
+    font-size: 30px;
 }
 
 .icon.inbox::before {
