@@ -1,0 +1,31 @@
+.search-bar {
+    display: flex;
+    background-color: var(--search-color);
+    border-radius: 50px;
+    width: 100%;
+    box-shadow: 0px 1px 3px 0px transparent;
+}
+
+.search-bar form {
+    display: flex;
+    border-radius: 50px;
+    width: 98%;
+    border-radius: 50px;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+
+    >input {
+        border: none;
+        background-color: var(--search-color);
+        width: 100%;
+    }
+
+    >input:focus {
+        outline: none;
+        background-color: transparent;
+    }
+}
+
+.search-bar:focus-within {
+    background-color: transparent;
+    box-shadow: 0px 1px 5px 0px var(--shadow-color);
+}

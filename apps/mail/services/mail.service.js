@@ -26,9 +26,9 @@ function query(filterBy = {}) {
                 const regExp = new RegExp(filterBy.txt, 'i')
                 mails = mails.filter(mail => regExp.test(mail.subject))
             }
-            // if (filterBy.minSpeed) {
-            //     mails = mails.filter(mail => mail.speed >= filterBy.minSpeed)
-            // }
+            if (filterBy.sentAt) {
+                mails = mails.filter(mail => mail.sentAt >= filterBy.sentAt)
+            }
             // console.log(' mails:', mails)
             return mails
         })
@@ -57,11 +57,11 @@ function save(mail) {
 function getEmptyMail() {
     const mail = {
         id: makeId(),
-        createdAt: new Date(), // 2024-06-02 12:00:00
+        createdAt: new Date(),
         subject: '',
         body: '',
         isRead: false,
-        sentAt: null, // 2024-06-02 12:03:00
+        sentAt: null,
         removedAt: null,
         from: 'user@appsus.com',
         to: ''
@@ -70,7 +70,7 @@ function getEmptyMail() {
 }
 
 function getDefaultFilter() {
-    return { txt: '' }
+    return { txt: '', sentAt:'' }
 }
 
 function getLoggedInUser() {
