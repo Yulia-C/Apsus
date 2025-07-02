@@ -9,7 +9,8 @@
     --selected-color: #d3e3fd;
     --hover-color: #2021240d;
     --search-color: #eaf1fb;
-    --details-border-color: #e0e0e0;
+    
+    --border-color: #e0e0e0;
     --keep-selected-color: #feefc3;
 
     --layout-padding: 1.6rem

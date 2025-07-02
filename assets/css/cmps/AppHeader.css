@@ -1,8 +1,9 @@
 .app-header {
     display: flex;
     justify-content: space-between;
-    padding: 1em;
-    background: var(--bg1);
+    align-items: center;
+    /* padding: 1em; */
+    border-bottom: 1px solid var(--border-color);
 }
 
 nav a {
@@ -12,5 +13,24 @@ nav a {
 nav a.active {
     color: var(--color1);
     font-weight: bold;
-    text-decoration: overline;
+    text-decoration: underline;
+}
+
+.apsus-logo {
+    width: 200px;
+}
+
+.mail-logo,
+.note-logo {
+    padding-inline: .5em;
+    padding-block: .3em;
+    width: 60px;
+    height: 64px;
+    object-fit: contain;
+}
+
+.mail-logo:hover,
+.note-logo:hover {
+    background-color: var(--hover-color);
+    border-radius: 50%;
 }
