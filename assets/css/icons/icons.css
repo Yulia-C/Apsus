@@ -1,0 +1,44 @@
+
+.fa {
+    font-family: fa;
+}
+
+.fa.bell-icon::before {
+    content: "\f0f3";
+}
+
+.fa.msg-icon::before {
+    content: "\f075";
+}
+
+.fa.img-icon::before {
+    content: "\f03e";
+}
+
+.fa.youtube-icon::before {
+    content: "\f167";
+}
+
+.fa.list-icon::before {
+    content: "\f0ca";
+}
+
+.fa.pin-icon::before {
+    content: "\f0ca";
+}
+
+.fa.palette-icon::before {
+    content: "\f53f";
+}
+
+.fa.mail-icon::before {
+    content: "\f0e0";
+}
+
+.fa.edit-icon::before {
+    content: "\f044";
+}
+
+.fa.delete-icon::before {
+    content: "\f1f8";
+}
