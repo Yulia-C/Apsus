@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: 'roboto', Arial, Helvetica, sans-serif, monospace;
 }
 
 h1,
@@ -20,4 +21,11 @@ img {
     height: 100%;
     width: 100%;
     object-fit: cover;
+}
+
+img,
+embed,
+video,
+object {
+    max-width: 100%;
 }
