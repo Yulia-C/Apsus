@@ -6,7 +6,23 @@
     box-shadow: 0px 1px 5px 0px var(--shadow-color);
 }
 
-.unread.mail-preview .mail-subject,.mail-body,
-.mail-date {
-    font-weight: bold;
+.read {
+    background-color: var(--shown-mail-bg-color);
+}
+
+.unread.mail-preview {
+
+    >.mail-subject,
+    .mail-body,
+    .mail-date {
+        font-weight: bold;
+    }
+}
+
+td>.icon.outlined::before {
+    color: var(--shadow-color);
+}
+
+.mail-preview:hover td>.icon.outlined::before {
+    color: var(--icon-color);
 }

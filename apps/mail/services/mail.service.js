@@ -60,7 +60,7 @@ function getEmptyMail() {
         createdAt: new Date(),
         subject: '',
         body: '',
-        isRead: false,
+        isRead: Math.random() > 0.7,
         sentAt: null,
         removedAt: null,
         from: 'user@appsus.com',
@@ -89,7 +89,7 @@ function _createMails() {
                 createdAt: 1717332000000, // 2024-06-02 12:00:00
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometime.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1717332180000, // 2024-06-02 12:03:00
                 removedAt: null,
                 from: 'momo@momo.com',
@@ -100,7 +100,7 @@ function _createMails() {
                 createdAt: 1715436000000, // 2024-05-11 10:00:00
                 subject: 'Project Update',
                 body: 'The project is on track for next week.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1715436240000, // 2024-05-11 10:04:00
                 removedAt: null,
                 from: 'alice@work.com',
@@ -111,7 +111,7 @@ function _createMails() {
                 createdAt: 1713705600000, // 2024-04-21 00:00:00
                 subject: 'Invitation',
                 body: 'You are invited to our annual event.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1713705780000, // 2024-04-21 00:03:00
                 removedAt: null,
                 from: 'events@company.com',
@@ -122,7 +122,7 @@ function _createMails() {
                 createdAt: 1719484800000, // 2024-07-28 00:00:00
                 subject: 'Sale Alert!',
                 body: 'Don\'t miss our summer sale.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1719485100000, // 2024-07-28 00:05:00
                 removedAt: null,
                 from: 'sales@shop.com',
@@ -133,7 +133,7 @@ function _createMails() {
                 createdAt: 1718284800000, // 2024-06-13 00:00:00
                 subject: 'Your Invoice',
                 body: 'Please find attached your invoice.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1718284980000, // 2024-06-13 00:03:00
                 removedAt: null,
                 from: 'billing@service.com',
@@ -144,7 +144,7 @@ function _createMails() {
                 createdAt: 1715954400000, // 2024-05-17 12:00:00
                 subject: 'Weekly Newsletter',
                 body: 'Here is your weekly newsletter.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1715954700000, // 2024-05-17 12:05:00
                 removedAt: null,
                 from: 'newsletter@news.com',
@@ -155,7 +155,7 @@ function _createMails() {
                 createdAt: 1714579200000, // 2024-05-01 00:00:00
                 subject: 'Appointment Reminder',
                 body: 'Your appointment is scheduled for tomorrow.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1714579500000, // 2024-05-01 00:05:00
                 removedAt: null,
                 from: 'appointments@clinic.com',
@@ -166,7 +166,7 @@ function _createMails() {
                 createdAt: 1717843200000, // 2024-06-08 00:00:00
                 subject: 'Flight Confirmation',
                 body: 'Your flight has been booked.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1717843440000, // 2024-06-08 00:04:00
                 removedAt: null,
                 from: 'flights@airline.com',
@@ -177,7 +177,7 @@ function _createMails() {
                 createdAt: 1716643200000, // 2024-05-25 00:00:00
                 subject: 'Password Reset',
                 body: 'Click here to reset your password.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1716643500000, // 2024-05-25 00:05:00
                 removedAt: null,
                 from: 'support@web.com',
@@ -188,7 +188,7 @@ function _createMails() {
                 createdAt: 1719062400000, // 2024-07-23 00:00:00
                 subject: 'Welcome!',
                 body: 'Thanks for signing up!',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1719062580000, // 2024-07-23 00:03:00
                 removedAt: null,
                 from: 'welcome@service.com',
@@ -199,7 +199,7 @@ function _createMails() {
                 createdAt: 1714915200000, // 2024-05-05 00:00:00
                 subject: 'Job Application',
                 body: 'We have received your application.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1714915500000, // 2024-05-05 00:05:00
                 removedAt: null,
                 from: 'hr@company.com',
@@ -210,7 +210,7 @@ function _createMails() {
                 createdAt: 1718198400000, // 2024-06-12 00:00:00
                 subject: 'Order Shipped',
                 body: 'Your order is on its way.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1718198580000, // 2024-06-12 00:03:00
                 removedAt: null,
                 from: 'orders@shop.com',
@@ -221,7 +221,7 @@ function _createMails() {
                 createdAt: 1717335600000, // 2024-06-02 13:00:00
                 subject: 'Feedback Request',
                 body: 'Please let us know how we did.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1717335900000, // 2024-06-02 13:05:00
                 removedAt: null,
                 from: 'feedback@service.com',
@@ -232,7 +232,7 @@ function _createMails() {
                 createdAt: 1715958000000, // 2024-05-17 13:00:00
                 subject: 'Subscription Expiring',
                 body: 'Your subscription will expire soon.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1715958180000, // 2024-05-17 13:03:00
                 removedAt: null,
                 from: 'subscriptions@service.com',
@@ -243,7 +243,7 @@ function _createMails() {
                 createdAt: 1713709200000, // 2024-04-21 01:00:00
                 subject: 'Event Reminder',
                 body: 'Don\'t forget the event tomorrow.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1713709500000, // 2024-04-21 01:05:00
                 removedAt: null,
                 from: 'events@calendar.com',
@@ -254,7 +254,7 @@ function _createMails() {
                 createdAt: 1719488400000, // 2024-07-28 01:00:00
                 subject: 'Security Alert',
                 body: 'A new login to your account was detected.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1719488580000, // 2024-07-28 01:03:00
                 removedAt: null,
                 from: 'security@web.com',
@@ -265,7 +265,7 @@ function _createMails() {
                 createdAt: 1718288400000, // 2024-06-13 01:00:00
                 subject: 'Payment Received',
                 body: 'Your payment has been processed.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1718288700000, // 2024-06-13 01:05:00
                 removedAt: null,
                 from: 'payments@service.com',
@@ -276,7 +276,7 @@ function _createMails() {
                 createdAt: 1715950800000, // 2024-05-17 10:00:00
                 subject: 'Account Update',
                 body: 'Your account information has been updated.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1715951040000, // 2024-05-17 10:04:00
                 removedAt: null,
                 from: 'accounts@web.com',
@@ -287,7 +287,7 @@ function _createMails() {
                 createdAt: 1714575600000, // 2024-04-30 23:00:00
                 subject: 'Holiday Greetings',
                 body: 'Wishing you a wonderful holiday season!',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1714575900000, // 2024-04-30 23:05:00
                 removedAt: null,
                 from: 'greetings@company.com',
@@ -298,7 +298,7 @@ function _createMails() {
                 createdAt: 1717846800000, // 2024-06-08 01:00:00
                 subject: 'Survey Invitation',
                 body: 'Please participate in our survey.',
-                isRead: false,
+                isRead: Math.random() > 0.7,
                 sentAt: 1717846980000, // 2024-06-08 01:03:00
                 removedAt: null,
                 from: 'survey@service.com',
