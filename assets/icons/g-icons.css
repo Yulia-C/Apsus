@@ -79,8 +79,8 @@
     content: "check_box_outline_blank";
 }
 
-.icon.checkbox-checked::before {
-    content: "check_box";
+.icon.reply::before {
+    content: "reply";
 }
 
 .icon.mark-unread::before {
