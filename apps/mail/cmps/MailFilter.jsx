@@ -1,6 +1,14 @@
+import { mailService } from "../services/mail.service.js"
+const { useEffect, useState } = React
 
-export function MailFilter() {
-    // const [filterByToEdit, setFilterByToEdit] = useState()
+export function MailFilter({ defaultFilter, onSetFilterBy }) {
+
+    const [filterByToEdit, setFilterByToEdit] = useState({ ...defaultFilter })
+    const { txt } = filterByToEdit
+
+    useEffect(() => {
+        onSetFilterBy(filterByToEdit)
+    }, [filterByToEdit])
 
     function handleChange({ target }) {
         const field = target.name
@@ -19,14 +27,14 @@ export function MailFilter() {
     }
 
     return (
-        <section className="mail-filter">
+        <section className="mail-search">
             <div className="flex row align-center" >
                 <i className="icon outlined menu"></i>
                 <img className="mail-logo" src="assets/img/gmail.svg" title="mail" />
                 <div onChange={handleChange} className="search-bar">
                     <form>
                         <i className="icon outlined search"></i>
-                        <input id='txt' name='txt' type='text' placeholder="Search mail" />
+                        <input onChange={handleChange} value={txt} id='txt' name='txt' type='text' placeholder="Search mail" />
                     </form>
                 </div>
             </div>
