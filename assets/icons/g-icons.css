@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Filled");
 
 .icon::before {
+    color: var(--icon-color);
     padding: .3rem;
     font-style: normal;
     font-variation-settings:
