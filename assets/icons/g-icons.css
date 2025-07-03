@@ -2,10 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Filled");
 
 .icon::before {
+    font-family: 'Material Symbols Outlined';
     color: var(--icon-color);
-    padding: .3rem;
+    padding: .2rem;
     font-style: normal;
     font-variation-settings:
+        'FILL' 0,
         'wght' 400,
         'GRAD' 0,
         'opsz' 24;
@@ -20,19 +22,6 @@
     border-radius: 50%;
 }
 
-.icon.outlined::before {
-    font-family: 'Material Symbols Outlined';
-    font-variation-settings:
-        'FILL' 0;
-}
-
-.icon.filled::before {
-    font-family: 'Material Symbols Filled';
-    font-style: normal;
-    font-variation-settings:
-        'FILL' 1;
-}
-
 .icon.delete::before {
     content: "delete";
 }
@@ -41,6 +30,16 @@
     content: "search";
     font-size: 30px;
     margin-inline-start: .7rem;
+}
+
+.starred {
+    padding: .2rem;
+    width: 25px;
+}
+
+.starred:hover {
+    background-color: var(--hover-color);
+    border-radius: 50%;
 }
 
 .icon.add::before {
@@ -78,6 +77,14 @@
 
 .icon.checkbox::before {
     content: "check_box_outline_blank";
+}
+
+.icon.checkbox-checked::before {
+    content: "check_box";
+}
+
+.icon.mark-unread::before {
+    content: "mark_as_unread";
 }
 
 .icon.checkbox-checked::before {
