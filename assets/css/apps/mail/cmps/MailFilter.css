@@ -8,21 +8,20 @@
 
 .search-bar form {
     display: flex;
+    flex: 1;
     border-radius: 50px;
-    width: 98%;
     border-radius: 50px;
     transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
 
-    >input {
-        border: none;
-        background-color: var(--search-color);
-        width: 100%;
-    }
+form>input {
+    background-color: transparent;
+    width: 90%;
+    border: none;
+}
 
-    >input:focus {
-        outline: none;
-        background-color: transparent;
-    }
+input:focus {
+    outline: none;
 }
 
 .search-bar:focus-within {
