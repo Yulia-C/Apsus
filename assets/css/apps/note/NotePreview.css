@@ -1,0 +1,17 @@
+.card {
+
+    border: solid 1px;
+    border-radius: .5em;
+    max-width: 500px;
+    padding: 10px;
+    margin-bottom: 10px;
+    break-inside: avoid;
+    transition: scale .3s;
+
+}
+
+.card:hover {
+    background-color: #f0f0f0;
+    scale: 1.02;
+}
+
