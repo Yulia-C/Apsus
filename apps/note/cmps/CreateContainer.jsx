@@ -8,6 +8,7 @@ export function CreateContainer() {
 
     function onHandleCreateMode(event) {
         const currMode = event.target.id;
+        if (currMode === createMode) return;
 
         const activeElement = document.querySelector('.create-icons .active');
         if (activeElement) {
