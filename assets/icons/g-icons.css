@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Filled");
+
+.icon::before {
+    font-family: 'Material Symbols Outlined';
+    color: var(--icon-color);
+    padding: .2rem;
+    font-style: normal;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    font-size: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    object-fit: contain;
+}
+
+.icon.outlined:hover:not(.icon.search)::before {
+    background-color: var(--hover-color);
+    border-radius: 50%;
+}
+
+.icon.delete::before {
+    content: "delete";
+}
+
+.icon.search::before {
+    content: "search";
+    font-size: 30px;
+    margin-inline-start: .7rem;
+}
+
+.starred {
+    padding: .2rem;
+    width: 25px;
+}
+
+.starred:hover {
+    background-color: var(--hover-color);
+    border-radius: 50%;
+}
+
+.icon.add::before {
+    content: "add";
+}
+
+.icon.star::before {
+    content: "star";
+}
+
+.icon.send::before {
+    content: "send";
+}
+
+.icon.menu::before {
+    content: "dehaze";
+    font-size: 30px;
+}
+
+.icon.inbox::before {
+    content: "inbox";
+}
+
+.icon.draft::before {
+    content: "draft";
+}
+
+.icon.compose::before {
+    content: "edit";
+}
+
+.icon.arrow-back::before {
+    content: "arrow_back";
+}
+
+.icon.checkbox::before {
+    content: "check_box_outline_blank";
+}
+
+.icon.reply::before {
+    content: "reply";
+}
+
+.icon.mark-unread::before {
+    content: "mark_as_unread";
+}
+
+.icon.checkbox-checked::before {
+    content: "check_box";
+}

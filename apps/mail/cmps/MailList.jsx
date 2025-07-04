@@ -1,7 +1,16 @@
 import { MailPreview } from "./MailPreview.jsx"
+const { useState, useEffect, Fragment } = React
 
 export function MailList({ mails }) {
-    return (<section className="mail-list">Mail list
-        <MailPreview />
-    </section>)
+
+
+    return (
+        <table key={mails.length} className="mail-list">
+            <tbody>
+                {mails.map((mail) => (
+                    <MailPreview key={mail.id} mail={mail} />
+                ))}
+            </tbody>
+        </table>
+    )
 }

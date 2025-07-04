@@ -42,3 +42,11 @@
 .fa.delete-icon::before {
     content: "\f1f8";
 }
+
+.fa.search-icon::before{
+    content:"\f002"
+}
+
+.fa.add-icon::before{
+    content:"\2b";
+}

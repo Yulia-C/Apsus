@@ -1,0 +1,22 @@
+.mail-actions {
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+
+    .icon::before {
+        font-size: 2rem;
+    }
+}
+
+.mail-actions{
+    max-width:100%;
+}
+
+.mail-details-content {
+    font-size: 1.3rem;
+}
+
+p.mail-subject-content {
+    font-family: 'lato', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
