@@ -21,6 +21,7 @@ export function MailIndex() {
         setSearchParams(getTruthyValues(filterBy))
     }, [filterBy])
 
+
     function loadMails() {
         mailService.query(filterBy)
             .then(mails => setMails(mails))
@@ -30,7 +31,6 @@ export function MailIndex() {
     function onSetFilterBy(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
-
 
     function handleChange({ target }) {
         const field = target.name
@@ -68,7 +68,19 @@ export function MailIndex() {
             return upDatedMails
         })
     }
+
     function onToggleStar(mailId) {
+        setMails(prevMails => {
+            const upDatedMails = prevMails.map(mail => {
+                if (mail.id === mailId) {
+                    const updatedMail = { ...mail, isStarred: !mail.isStarred }
+                    mailService.save(updatedMail)
+                    return updatedMail
+                }
+                return mail
+            })
+            return upDatedMails
+        })
     }
 
     function onMoveToTrash(mailId) {
@@ -97,17 +109,13 @@ export function MailIndex() {
                         <option value={false}>Unread</option>
                     </select>
 
-                    <select
-                        id="isStarred"
-                        name="isStarred"
-                        // value={filterBy.isStarred}
-                        onChange={handleChange}
-                    >
-                        <option value="">All mails</option>
+                    <select id="isStarred" name="isStarred" onChange={handleChange}>
+                        <option value="">⭐ All mails</option>
                         <option value="true">Starred</option>
                         <option value="false">Unstarred</option>
                     </select>
                 </form>
+
                 <section className="flex row">
                     <MailMenu />
                     <MailList mails={mails} onToggleCheckbox={onToggleCheckbox}
@@ -120,4 +128,3 @@ export function MailIndex() {
         </Fragment>
     )
 }
-
