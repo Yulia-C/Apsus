@@ -4,9 +4,9 @@ const { useState, useEffect } = React
 const { useNavigate } = ReactRouterDOM
 
 
-export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onMarkUnread, onMoveToTrash }) {
+export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onToggleRead, onMoveToTrash }) {
     const navigate = useNavigate()
-    const [isMailHovered, setIsMailHovered] = useState(null)
+    const [isMailHovered, setIsMailHovered] = useState(true)
 
 
     const handleMouseEnter = (mailId) => {
@@ -22,7 +22,8 @@ export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onMar
             <tbody>
                 {mails.map((mail) => (
                     <tr key={mail.id} className={`${mail.isRead ? 'read' : 'unread'} mail-preview`}
-                        onMouseEnter={() => handleMouseEnter(mail.id)} onMouseLeave={handleMouseLeave}>
+                        onMouseEnter={() => handleMouseEnter(mail.id)} onMouseLeave={handleMouseLeave}
+                    >
 
                         <td className="icon-cell">{mail.isChecked ?
                             <i onClick={() => onToggleCheckbox(mail.id)} className="icon outlined checkbox-checked" /> :
@@ -38,7 +39,9 @@ export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onMar
                         </td>
                         {(isMailHovered === mail.id) ? <td className="mail-actions">
                             <i onClick={() => onReply(mail.id)} title="reply" className="icon outlined reply" />
-                            <i onClick={() => onMarkUnread(mail.id)} title="mark-unread" className="icon outlined mark-unread" />
+
+                            {mail.isRead ? <i onClick={() => onToggleRead(mail.id)} title="mark-unread" className="icon outlined mark-unread" /> :
+                                <i onClick={() => onToggleRead(mail.id)} title="mark-read" className="icon outlined mark-read" />}
                             <i onClick={() => onMoveToTrash(mail.id)} title="send to trash" className="icon outlined delete" />
                         </td> : <td className="mail-date">{new Date(mail.sentAt).toLocaleDateString('en-US')}</td>
                         }
