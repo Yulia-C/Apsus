@@ -1,5 +1,4 @@
 
-const { Fragment } = React;
 
 export function NotePreview({ note }) {
 

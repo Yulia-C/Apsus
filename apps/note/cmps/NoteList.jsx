@@ -1,9 +1,9 @@
 
-import { notes } from "../services/note.service.js";
 import { NotePreview } from "NotePreview.jsx";
 
 
-export function NoteList() {
+export function NoteList({ notes }) {
+    if (!notes || !notes.length) return <div className="empty-note-list">Loading...</div>
 
 
     return (
