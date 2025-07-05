@@ -30,10 +30,11 @@
 @import './apps/mail/cmps/MailPreview.css';
 @import './apps/mail/cmps/MailMenu.css';
 
-/* Mail Cmps */
+/* Note Cmps */
 @import './apps/note/CreateContainer.css';
 @import './apps/note/NotePreview.css';
 @import './apps/note/NoteList.css';
+@import './apps/note/CardBtns.css';
 
 
 
