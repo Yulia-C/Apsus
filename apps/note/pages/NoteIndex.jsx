@@ -24,7 +24,7 @@ export function NoteIndex() {
 
     return (
         <section className="note-index">
-
+            <input className="search input create-container" placeholder="Search" type="text" />
             <CreateContainer />
             <NoteList notes={notes} />
 

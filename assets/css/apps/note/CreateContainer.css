@@ -3,21 +3,22 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px auto;
+
+    margin-inline: 1rem;
     padding: 10px;
     border: solid 1px;
     border-radius: .5em;
     height: 1.5em;
     font-size: 1.2em;  
-    width: 70%;
+    background-color: rgb(241, 203, 157);
 }
 
 .create-container input {
     border: none;
-    height: 95%;
-    width: 70%;
     font-size: inherit;
     outline: none;
+    width: 90%;
+    background-color: rgb(241, 203, 157);
 }
 
 .create-container button {
