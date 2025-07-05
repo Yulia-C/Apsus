@@ -10,7 +10,7 @@ const { Link, useSearchParams } = ReactRouterDOM
 
 
 export function MailIndex() {
-    const [mails, setMails] = useState()
+    const [mails, setMails] = useState([])
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -46,13 +46,42 @@ export function MailIndex() {
                 break
 
         }
-        if (field === isRead || isStarred) {
+        if (field === 'isRead' || field === 'isStarred') {
             if (value === 'true') value = true
             else if (value === 'false') value = false
             else if (value = '') value = null
         }
 
         setFilterBy(prevFilter => ({ ...prevFilter, [field]: value }))
+    }
+
+    function onToggleCheckbox(mailId) {
+        setMails(prevMails => {
+            const upDatedMails = prevMails.map(mail => {
+                if (mail.id === mailId) {
+                    const updatedMail = { ...mail, isChecked: !mail.isChecked }
+                    mailService.save(updatedMail)
+                    return updatedMail
+                }
+                return mail
+            })
+            return upDatedMails
+        })
+    }
+    function onToggleStar(mailId) {
+    }
+
+    function onMoveToTrash(mailId) {
+        console.log('onMoveToTrash');
+
+    }
+    function onReply(mailId) {
+        console.log('onReply');
+
+    }
+    function onMarkUnread(mailId) {
+        console.log('onMarkUnread');
+
     }
 
     if (!mails) return <div>Loading...</div>
@@ -81,7 +110,11 @@ export function MailIndex() {
                 </form>
                 <section className="flex row">
                     <MailMenu />
-                    <MailList mails={mails} />
+                    <MailList mails={mails} onToggleCheckbox={onToggleCheckbox}
+                        onToggleStar={onToggleStar}
+                        onReply={onReply}
+                        onMarkUnread={onMarkUnread}
+                        onMoveToTrash={onMoveToTrash} />
                 </section>
             </section>
         </Fragment>
