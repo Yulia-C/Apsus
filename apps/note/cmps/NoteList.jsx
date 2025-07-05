@@ -3,7 +3,7 @@ import { NotePreview } from "NotePreview.jsx";
 
 
 export function NoteList({ notes }) {
-    if (!notes || !notes.length) return <div className="empty-note-list">Loading...</div>
+    if (!notes || !notes.length) return <h1 className="loading-notes">Loading...</h1>
 
 
     return (
