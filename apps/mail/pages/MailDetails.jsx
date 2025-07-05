@@ -59,7 +59,7 @@ export function MailDetails() {
                 <MailMenu />
                 <section>
 
-                    <div className="mail-actions flex space-between">
+                    <div className="mail-d-actions flex space-between">
                         <div onClick={onBack}><i title="back" className="icon outlined arrow-back" /></div>
                         <div>
                             <i title="reply" className="icon outlined reply" />
