@@ -1,4 +1,5 @@
 
+const { Fragment } = React;
 
 export function NotePreview({ note }) {
 
@@ -6,10 +7,8 @@ export function NotePreview({ note }) {
 
 
     return (
-        <section className="card-container">
             <DynamicCard note={note} />
 
-        </section>
     )
 }
 
@@ -34,11 +33,13 @@ function NoteTxt({ note }) {
 }
 
 function NoteImg({ note }) {
+
     return (
-        <div className="note-img card" >
-            <p>{note.info.title}</p>
+        <div className="note-txt card" >
+            <h3 className="img-title">{note.info.title}</h3>
             <img src={note.info.url} />
         </div>
+
     );
 }
 
