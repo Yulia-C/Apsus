@@ -1,21 +1,24 @@
 
 import { mailService } from "../services/mail.service.js"
+import { getTruthyValues } from "../../../services/util.service.js"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailMenu } from "../cmps/MailMenu.jsx"
 import { MailFilter } from "../cmps/MailFilter.jsx"
 
 const { useState, useEffect, Fragment } = React
-const { Link } = ReactRouterDOM
+const { Link, useSearchParams } = ReactRouterDOM
 
 
 export function MailIndex() {
     const [mails, setMails] = useState()
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+    const [searchParams, setSearchParams] = useSearchParams()
 
-    console.log('mails:', mails)
+    const truthyFilter = getTruthyValues(filterBy)
 
     useEffect(() => {
         loadMails()
+        setSearchParams(getTruthyValues(filterBy))
     }, [filterBy])
 
     function loadMails() {
