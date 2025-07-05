@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 export function LongTxt({ txt, minLength = 5, maxLength = 70 }) {
-const [isExtended, setIsExtended] = useState(false);
+  const [isExtended, setIsExtended] = useState(false)
   const [visibleLength, setVisibleLength] = useState(maxLength)
 
   useEffect(() => {
@@ -15,20 +15,20 @@ const [isExtended, setIsExtended] = useState(false);
         setVisibleLength(maxLength)
       }
     }
-        handleResize()
-        window.addEventListener('resize',handleResize)
+    handleResize()
+    window.addEventListener('resize', handleResize)
 
-        return () => window.removeEventListener('resize', handleResize)
-    }, [minLength, maxLength])
+    return () => window.removeEventListener('resize', handleResize)
+  }, [minLength, maxLength])
 
 
-    return (
-        <p className='long-txt'>{isExtended ? txt : txt.substring(0, visibleLength)}
-            {txt.length > visibleLength && (
+  return (
+    <p className='long-txt'>{isExtended ? txt : txt.substring(0, visibleLength)}
+      {txt.length > visibleLength && (
 
-            <span onClick={() => setIsExtended(!isExtended)}>
-                    {isExtended ? '' : '...'}</span>
-            )}
-        </p>
-    )
+        <span onClick={() => setIsExtended(!isExtended)}>
+          {isExtended ? '' : '...'}</span>
+      )}
+    </p>
+  )
 }
