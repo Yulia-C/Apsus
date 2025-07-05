@@ -1,24 +1,68 @@
 // note service
 
-
-import { storageService } from '../../../services/storage.service.js';
+import { storageService } from '../../../services/async-storage.service.js';
 import { utilService } from '../../../services/util.service.js';
 
+const NOTE_KEY = 'noteDB'
+_createNotes()
 
 export const noteService = {
     query,
-    getById,
+    get,
     remove,
     save,
     getEmptyNote,
-    getDefaultStyle,
-    getDefaultTodos,
-    _createNotes
+    _createNotes,
 }
 
 
+function query() {
+    return storageService.query(NOTE_KEY)
+}
+
+function get(noteId) {
+    return storageService.get(NOTE_KEY, noteId)
+}
+
+function remove(noteId) {
+    // return Promise.reject('Oh No!')
+    return storageService.remove(NOTE_KEY, noteId)
+}
+
+function save(note) {
+    if (note.id) {
+        return storageService.put(NOTE_KEY, note)
+    } else {
+        return storageService.post(NOTE_KEY, note)
+    }
+}
+
+function getEmptyNote() {
+    const note = {
+        id: makeId(),
+        createdAt: new Date(),
+        subject: '',
+        body: '',
+        isRead: Math.random() > 0.7,
+        isStarred: Math.random() > 0.7,
+        sentAt: null,
+        removedAt: null,
+        from: 'user@appsus.com',
+        to: ''
+    }
+    return note
+}
+
+// function getDefaultFilter() {
+//     return {
+//         txt: ''
+//     }
+// }
+
+
+
 function _createNotes() {
-    let notes = storageService.load('notes');
+    let notes = utilService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
         notes = [ 
     
@@ -154,7 +198,10 @@ function _createNotes() {
                 } 
             }
       ]
+
+      utilService.saveToStorage(NOTE_KEY, notes)
     }
+
     return notes;
 }
 
