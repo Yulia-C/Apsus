@@ -1,7 +1,7 @@
 // mail service
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
-import { makeId } from '../../../../../../../CaEveNov24-Materials/Lesson36-React4-Dynamic&Children&More/react-inClass-cars/services/util.service.js'
+import { makeId } from '../../../services/util.service.js'
 
 const MAIL_KEY = 'mailDB'
 _createMails()
@@ -28,8 +28,14 @@ function query(filterBy = {}) {
                     regExp.test(mail.subject)
                     || regExp.test(mail.body)
                     || regExp.test(mail.from))
-
             }
+
+            if (filterBy.sentAt) {
+                mails = mails.sort((mailA, mailB) => {
+                    return mailB.sentAt - mailA.sentAt
+                })
+            }
+
             if (typeof filterBy.isRead === 'boolean') {
                 mails = mails.filter(mail => mail.isRead === filterBy.isRead)
             }
@@ -79,8 +85,27 @@ function getEmptyMail() {
 
 function getDefaultFilter() {
     return {
-        txt: '', isStarred: null, isRead: null,
-        status: 'inbox/sent/trash/draft'
+        txt: '', isStarred: null, isRead: null, isChecked: null, sentAt: null,
+        status: [],
+    }
+}
+
+function getFilterFromSearchParams(searchParams) {
+
+    const txt = searchParams.get('txt') || ''
+    const sentAt = searchParams.get('sentAt') || ''
+    const isStarred = searchParams.get('isStarred') || ''
+    const isRead = searchParams.get('isRead') || ''
+    const isChecked = searchParams.get('isChecked') || ''
+    const status = searchParams.getAll("status") || ''
+
+    return {
+        txt,
+        sentAt,
+        isStarred,
+        isRead,
+        isChecked,
+        status
     }
 }
 
@@ -105,6 +130,8 @@ function _createMails() {
                 Hope all is well on your end.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1717332180000, // 2024-06-02 12:03:00
                 removedAt: null,
                 from: 'momo@momo.com',
@@ -120,6 +147,8 @@ function _createMails() {
                 Let me know if you have any last-minute concerns.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1715436240000, // 2024-05-11 10:04:00
                 removedAt: null,
                 from: 'alice@work.com',
@@ -134,6 +163,8 @@ function _createMails() {
                  Please mark your calendar and save the date.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1713705780000, // 2024-04-21 00:03:00
                 removedAt: null,
                 from: 'events@company.com',
@@ -148,6 +179,8 @@ function _createMails() {
                 before they’re gone. Offer ends Sunday at midnight.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1719485100000, // 2024-07-28 00:05:00
                 removedAt: null,
                 from: 'sales@shop.com',
@@ -162,6 +195,8 @@ function _createMails() {
                  or need assistance. Thank you for your continued business.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1718284980000, // 2024-06-13 00:03:00
                 removedAt: null,
                 from: 'billing@service.com',
@@ -176,6 +211,8 @@ function _createMails() {
                 of the week. As always, we love hearing your feedback.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1715954700000, // 2024-05-17 12:05:00
                 removedAt: null,
                 from: 'newsletter@news.com',
@@ -190,6 +227,8 @@ function _createMails() {
                  contact us today. We look forward to seeing you.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1714579500000, // 2024-05-01 00:05:00
                 removedAt: null,
                 from: 'appointments@clinic.com',
@@ -204,6 +243,8 @@ function _createMails() {
                  accuracy. Safe travels and let us know if you need assistance.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1717843440000, // 2024-06-08 00:04:00
                 removedAt: null,
                 from: 'flights@airline.com',
@@ -218,6 +259,8 @@ function _createMails() {
                 Need help? Contact support any time.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1716643500000, // 2024-05-25 00:05:00
                 removedAt: null,
                 from: 'support@web.com',
@@ -232,6 +275,8 @@ function _createMails() {
                 message. We’re glad to have you with us.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1719062580000, // 2024-07-23 00:03:00
                 removedAt: null,
                 from: 'welcome@service.com',
@@ -246,6 +291,8 @@ function _createMails() {
                 joining us. We appreciate the time you took to apply.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1714915500000, // 2024-05-05 00:05:00
                 removedAt: null,
                 from: 'hr@company.com',
@@ -260,6 +307,8 @@ function _createMails() {
                  enjoy your purchase!`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1718198580000, // 2024-06-12 00:03:00
                 removedAt: null,
                 from: 'orders@shop.com',
@@ -274,6 +323,8 @@ function _createMails() {
                 Thank you for your time and support.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1717335900000, // 2024-06-02 13:05:00
                 removedAt: null,
                 from: 'feedback@service.com',
@@ -288,6 +339,8 @@ function _createMails() {
                 for your convenience. Don’t miss out on your benefits.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1715958180000, // 2024-05-17 13:03:00
                 removedAt: null,
                 from: 'subscriptions@service.com',
@@ -302,6 +355,8 @@ function _createMails() {
                 email for check-in. Let us know if you have any questions beforehand.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1713709500000, // 2024-04-21 01:05:00
                 removedAt: null,
                 from: 'events@calendar.com',
@@ -316,6 +371,8 @@ function _createMails() {
                  Security is our top priority.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1719488580000, // 2024-07-28 01:03:00
                 removedAt: null,
                 from: 'security@web.com',
@@ -330,6 +387,8 @@ function _createMails() {
                 reach out. Thank you for your prompt payment.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1718288700000, // 2024-06-13 01:05:00
                 removedAt: null,
                 from: 'payments@service.com',
@@ -344,6 +403,8 @@ function _createMails() {
                  contact support immediately. We’re here to help.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1715951040000, // 2024-05-17 10:04:00
                 removedAt: null,
                 from: 'accounts@web.com',
@@ -358,6 +419,8 @@ function _createMails() {
                 support throughout the year. Stay safe and warm.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1714575900000, // 2024-04-30 23:05:00
                 removedAt: null,
                 from: 'greetings@company.com',
@@ -372,6 +435,8 @@ function _createMails() {
                 of minutes. Thank you for helping us grow.`,
                 isRead: Math.random() > 0.7,
                 isStarred: Math.random() > 0.7,
+                status: ['inbox'],
+                isChecked: false,
                 sentAt: 1717846980000, // 2024-06-08 01:03:00
                 removedAt: null,
                 from: 'survey@service.com',
