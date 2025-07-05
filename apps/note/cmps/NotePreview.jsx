@@ -4,9 +4,6 @@ const { Fragment } = React;
 
 export function NotePreview({ note }) {
 
-    console.log(note)
-
-
     return (
             <DynamicCard note={note} />
     )
