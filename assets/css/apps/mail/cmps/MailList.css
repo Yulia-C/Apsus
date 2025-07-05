@@ -1,7 +1,14 @@
- /* mail list */
 .mail-list {
      width: 100%;
      border-spacing:0;
      background-color: white;
  }
 
+td.mail-date, td.mail-actions{
+    /* display:flex; */
+    min-width:90px;
+}
+
+td.mail-form, td.mail-subject{
+    width:fit-content;
+}
