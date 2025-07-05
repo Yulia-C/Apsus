@@ -84,11 +84,22 @@ export function MailIndex() {
     }
 
     function onMoveToTrash(mailId) {
-        console.log('onMoveToTrash');
-
+           console.log('onMoveToTrash');
+    //     setMails(prevMails => {
+    //         const upDatedMails = prevMails.map(mail => {
+    //             if (mail.id === mailId) {
+    //                 const updatedMail = { ...mail, status: 'trash' }
+    //                 mailService.save(updatedMail)
+    //                 return updatedMail
+    //             }
+    //             return mail
+    //         })
+    //         return upDatedMails
+    //     })
     }
+
     function onReply(mailId) {
-        
+    
     }
     
     function onToggleRead(mailId) {
@@ -130,7 +141,7 @@ export function MailIndex() {
                     <MailList mails={mails} onToggleCheckbox={onToggleCheckbox}
                         onToggleStar={onToggleStar}
                         onReply={onReply}
-                        onMarkUnread={onMarkUnread}
+                        onToggleRead={onToggleRead}
                         onMoveToTrash={onMoveToTrash} />
                 </section>
             </section>
