@@ -16,13 +16,15 @@ export function MailDetails() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        loadMails()
+            loadMail()
     }, [mailId, filterBy])
 
-    function loadMails() {
+    function loadMail() {
         mailService.get(mailId)
             .then(mail => {
-                setMail(mail)
+                const updatedMail = { ...mail, isRead: true }
+                setMail(updatedMail)
+                mailService.save(updatedMail)
             })
             .catch(err => {
                 console.log('err:', err)

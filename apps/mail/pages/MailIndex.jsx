@@ -88,12 +88,21 @@ export function MailIndex() {
 
     }
     function onReply(mailId) {
-        console.log('onReply');
-
+        
     }
-    function onMarkUnread(mailId) {
-        console.log('onMarkUnread');
-
+    
+    function onToggleRead(mailId) {
+    setMails(prevMails => {
+            const upDatedMails = prevMails.map(mail => {
+                if (mail.id === mailId) {
+                    const updatedMail = { ...mail, isRead: !mail.isRead }
+                    mailService.save(updatedMail)
+                    return updatedMail
+                }
+                return mail
+            })
+            return upDatedMails
+        })
     }
 
     if (!mails) return <div>Loading...</div>
