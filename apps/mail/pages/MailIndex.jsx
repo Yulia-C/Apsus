@@ -99,10 +99,8 @@ export function MailIndex() {
         <Fragment>
             <section className="mail-index container">
 
-                <MailFilter defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
-
-                <section className="flex row">
                     <MailMenu />
+                    <MailFilter defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
                     {mailId ? (
                         <MailDetails onReply={onReply}
                             onToggleRead={onToggleRead}
@@ -116,7 +114,6 @@ export function MailIndex() {
                             onMoveToTrash={onMoveToTrash} />
                     )}
                 </section>
-            </section>
         </Fragment>
     )
 }

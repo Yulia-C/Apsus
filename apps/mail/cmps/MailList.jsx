@@ -19,7 +19,7 @@ export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onTog
 
     if (!mails) return <div>Loading...</div>
     return (
-        <table className="mail-list">
+        <table className="mail-list main">
             <tbody>
                 {mails.map((mail) => (
                     <tr key={mail.id} className={`${mail.isRead ? 'read' : 'unread'} mail-preview`}

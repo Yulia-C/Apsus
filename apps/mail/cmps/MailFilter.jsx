@@ -33,11 +33,11 @@ export function MailFilter({ defaultFilter, onSetFilterBy }) {
     }
 
     return (
-        <section className="mail-search header">
+        <section className="mail-search m-header">
             {/* <div className="flex column"> */}
-                <div className="wrapper flex row align-center">
-                    <i className="icon outlined menu"></i>
+                    <i className="toggle-menu icon outlined menu"></i>
                     <img className="mail-logo" src="assets/img/gmail.svg" title="mail" />
+                {/* <div className="form-container"> */}
                     {/* <div onChange={handleChange} className="search-bar"> */}
                         <form onChange={handleChange} className="search-bar">
                             <i className="icon outlined search"></i>
@@ -57,7 +57,7 @@ export function MailFilter({ defaultFilter, onSetFilterBy }) {
                         <option value="false">Unstarred</option>
                     </select>
                 </form>
-                </div>
+                {/* </div> */}
             {/* </div> */}
         </section>
     )

@@ -1,9 +1,25 @@
+.mail-search:not(.mail-filter) {
+    display: grid;
+    grid-template-columns: .2fr .5fr .5fr .5fr 4fr 1fr;
+    grid-template-areas:
+        "menu logo filter filter search  . ";
+    align-items: center;
+
+    >.mail-logo {
+        grid-area: logo;
+    }
+
+    >.mail-filter {
+        grid-area: filter;
+    }
+}
+
 .search-bar {
+    grid-area: search;
     display: flex;
     background-color: var(--search-color);
     border-radius: 50px;
     box-shadow: 0px 1px 3px 0px transparent;
-    width: 50%;
     height: 3.5rem;
     transition: box-shadow 0.2s ease, background-color 0.2s ease;
 }

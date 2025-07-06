@@ -1,6 +1,6 @@
 export function MailMenu() {
     return (
-        <section className="mail-menu flex column">
+        <section className="mail-menu aside flex column">
 
             <i className="icon outlined compose" />
             <i className="icon outlined inbox" />
