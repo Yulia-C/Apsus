@@ -1,25 +1,95 @@
 .user-msg {
-    position: fixed;
-    bottom: -100px;
+    /* position: fixed; */
+    /*bottom: -100px;
     right: .5em;
     padding: .5em;
-    background-color: #111;
+    /*  */
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    padding: 16px;
+    position: fixed;
+    left: 50%;
+    bottom: 5px;
+    background-color: grey;
+    
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .user-msg.open {
-    bottom: .8em;
+
     transition: bottom .5s;
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+/* 
 .user-msg.success {
-    background-color: var(--color2);
+    background-color: var(red);
 }
 
 .user-msg.error {
     background-color: var(--color3);
+} */
+
+.user-msg button {
+    float: right;
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin-inline-start: 4px;
 }
 
-.user-msg button{
-   float: right;
-   margin-inline-start: 4px;
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: -5px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 5px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: -5px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 5px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 5px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: -5px;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 5px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: -5px;
+        opacity: 0;
+    }
 }
