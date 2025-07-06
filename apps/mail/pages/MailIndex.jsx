@@ -4,9 +4,11 @@ import { getTruthyValues } from "../../../services/util.service.js"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailMenu } from "../cmps/MailMenu.jsx"
 import { MailFilter } from "../cmps/MailFilter.jsx"
+import { MailDetails } from "./MailDetails.jsx"
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect, Fragment } = React
-const { Link, useSearchParams } = ReactRouterDOM
+const { Link, useSearchParams, useParams } = ReactRouterDOM
 
 
 export function MailIndex() {
@@ -14,17 +16,20 @@ export function MailIndex() {
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const [searchParams, setSearchParams] = useSearchParams()
 
+    const { mailId } = useParams()
+
+
     const truthyFilter = getTruthyValues(filterBy)
 
     useEffect(() => {
         loadMails()
         setSearchParams(getTruthyValues(filterBy))
-    }, [filterBy])
+    }, [mailId, filterBy])
 
 
     function loadMails() {
         mailService.query(filterBy)
-            .then(mails => setMails(mails))
+            .then(mails => setMails(mails.filter(mail => mail.status.includes('inbox'))))
             .catch(err => console.log('err:', err))
     }
 
@@ -32,28 +37,23 @@ export function MailIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
-    function handleChange({ target }) {
-        const field = target.name
-        let value = target.value
-        switch (target.type) {
+    // function handleChange({ target }) {
+    //     const field = target.name
+    //     let value = target.value
+    //     switch (target.type) {
 
-            case 'range':
-                value = +value
-                break;
+    //         case 'range':
+    //             value = +value
+    //             break;
 
-            case 'checkbox':
-                value = target.checked
-                break
+    //         case 'checkbox':
+    //             value = target.checked
+    //             break
 
-        }
-        if (field === 'isRead' || field === 'isStarred') {
-            if (value === 'true') value = true
-            else if (value === 'false') value = false
-            else if (value = '') value = null
-        }
+    //     }
 
-        setFilterBy(prevFilter => ({ ...prevFilter, [field]: value }))
-    }
+    //     setFilterBy(prevFilter => ({ ...prevFilter, [field]: value }))
+    // }
 
     function onToggleCheckbox(mailId) {
         setMails(prevMails => {
@@ -99,11 +99,11 @@ export function MailIndex() {
     }
 
     function onReply(mailId) {
-    
+
     }
-    
+
     function onToggleRead(mailId) {
-    setMails(prevMails => {
+        setMails(prevMails => {
             const upDatedMails = prevMails.map(mail => {
                 if (mail.id === mailId) {
                     const updatedMail = { ...mail, isRead: !mail.isRead }
@@ -122,27 +122,21 @@ export function MailIndex() {
             <section className="mail-index container">
 
                 <MailFilter defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
-                <form className="mail-filter">
-                    <select id="isRead" onChange={handleChange} className="isRead" name="isRead">
-                        <option value="">All mails</option>
-                        <option value={true}>Read</option>
-                        <option value={false}>Unread</option>
-                    </select>
-
-                    <select id="isStarred" name="isStarred" onChange={handleChange}>
-                        <option value="">⭐ All mails</option>
-                        <option value="true">Starred</option>
-                        <option value="false">Unstarred</option>
-                    </select>
-                </form>
 
                 <section className="flex row">
                     <MailMenu />
-                    <MailList mails={mails} onToggleCheckbox={onToggleCheckbox}
-                        onToggleStar={onToggleStar}
-                        onReply={onReply}
-                        onToggleRead={onToggleRead}
-                        onMoveToTrash={onMoveToTrash} />
+                    {mailId ? (
+                        <MailDetails onReply={onReply}
+                            onToggleRead={onToggleRead}
+                            onMoveToTrash={onMoveToTrash} />
+                    ) : (
+                        <MailList mails={mails}
+                            onToggleCheckbox={onToggleCheckbox}
+                            onToggleStar={onToggleStar}
+                            onReply={onReply}
+                            onToggleRead={onToggleRead}
+                            onMoveToTrash={onMoveToTrash} />
+                    )}
                 </section>
             </section>
         </Fragment>
