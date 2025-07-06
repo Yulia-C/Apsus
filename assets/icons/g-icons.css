@@ -18,7 +18,7 @@
 }
 
 .icon.outlined:hover:not(.icon.search)::before {
-    cursor:pointer;
+    cursor: pointer;
     background-color: var(--hover-color);
     border-radius: 50%;
 }
@@ -30,12 +30,17 @@
 .icon.search::before {
     content: "search";
     font-size: 30px;
-    margin-inline-start: .7rem;
+    margin-inline-start: 1rem;
+}
+
+i.icon.search {
+    margin-block: auto;
 }
 
 .starred {
     padding: .1rem;
     width: 24px;
+    height: 24px;
 }
 
 .starred:hover {
