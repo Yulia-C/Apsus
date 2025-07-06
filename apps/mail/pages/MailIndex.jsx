@@ -4,7 +4,7 @@ import { getTruthyValues } from "../../../services/util.service.js"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailMenu } from "../cmps/MailMenu.jsx"
 import { MailFilter } from "../cmps/MailFilter.jsx"
-import { MailDetails } from "./MailDetails.jsx"
+import { MailDetails } from "../cmps/MailDetails.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect, Fragment } = React
@@ -37,24 +37,6 @@ export function MailIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
-    // function handleChange({ target }) {
-    //     const field = target.name
-    //     let value = target.value
-    //     switch (target.type) {
-
-    //         case 'range':
-    //             value = +value
-    //             break;
-
-    //         case 'checkbox':
-    //             value = target.checked
-    //             break
-
-    //     }
-
-    //     setFilterBy(prevFilter => ({ ...prevFilter, [field]: value }))
-    // }
-
     function onToggleCheckbox(mailId) {
         setMails(prevMails => {
             const upDatedMails = prevMails.map(mail => {
@@ -84,18 +66,14 @@ export function MailIndex() {
     }
 
     function onMoveToTrash(mailId) {
-           console.log('onMoveToTrash');
-    //     setMails(prevMails => {
-    //         const upDatedMails = prevMails.map(mail => {
-    //             if (mail.id === mailId) {
-    //                 const updatedMail = { ...mail, status: 'trash' }
-    //                 mailService.save(updatedMail)
-    //                 return updatedMail
-    //             }
-    //             return mail
-    //         })
-    //         return upDatedMails
-    //     })
+        console.log('onMoveToTrash', mails);
+        mailService.moveToTrash(mailId)
+            .then(mail => mailService.save(mail))
+            .then(() => {
+                showSuccessMsg('Mail moved to trash')
+                setMails(mails => mails.filter(mail => mail.id !== mailId))
+            })
+            .catch(err => showErrorMsg('Had a problem trashing mail...'))
     }
 
     function onReply(mailId) {

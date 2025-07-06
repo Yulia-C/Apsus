@@ -16,6 +16,8 @@ export const mailService = {
     getLoggedInUser,
     getDefaultFilter,
     getFilterFromSearchParams,
+    moveToTrash,
+    moveToDraft,
 
 }
 
@@ -87,7 +89,22 @@ function getDefaultFilter() {
     return {
         txt: '', isStarred: null, isRead: null, isChecked: null, sentAt: null,
         status: [],
+        // 'inbox/sent/trash/draft'
     }
+}
+
+function moveToTrash(mailId) {
+    return storageService.get(MAIL_KEY, mailId).then(mail => {
+        mail = { ...mail, status: ['trash'] }
+        return mail
+    })
+}
+
+function moveToDraft(mailId) {
+    return storageService.get(MAIL_KEY, mailId).then(mail => {
+        mail = { ...mail, status: ['draft'] }
+        return mail
+    })
 }
 
 function getFilterFromSearchParams(searchParams) {
