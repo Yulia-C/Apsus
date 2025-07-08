@@ -77,6 +77,8 @@ function getEmptyMail() {
         body: '',
         isRead: Math.random() > 0.7,
         isStarred: Math.random() > 0.7,
+        status: [],
+        isChecked: false,
         sentAt: null,
         removedAt: null,
         from: 'user@appsus.com',

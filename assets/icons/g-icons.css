@@ -44,31 +44,31 @@ i.icon.search {
 }
 
 .m-inbox {
-    padding: .3rem;
+    padding: .15rem;
     width: 24px;
     height: 24px;
 }
 
 .m-star {
-    padding: .3rem;
+    padding: .15rem;
     width: 24px;
     height: 24px;
 }
 
 .m-sent {
-    padding: .3rem;
+    padding: .15rem;
     width: 24px;
     height: 24px;
 }
 
 .m-draft {
-    padding: .3rem;
+    padding: .15rem;
     width: 24px;
     height: 24px;
 }
 
 .m-delete {
-    padding: .3rem;
+    padding: .15rem;
     width: 24px;
     height: 24px;
 }

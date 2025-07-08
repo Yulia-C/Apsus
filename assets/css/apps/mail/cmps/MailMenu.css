@@ -1,8 +1,9 @@
 .mail-menu {
     background-color: var(--main-bg-color);
+
     /* position: fixed; */
     /* height: 100%; */
-    width:55px;
+    width: 55px;
     /* z-index: 2; */
 
     >i {
@@ -11,19 +12,48 @@
     }
 }
 
-.mail-menu.open{
+.mail-menu.open {
+    align-items: start;
+    justify-items: start;
     width: 200px;
     transition: 'width' 500ms;
 }
 
+.mail-menu .item-name {
+    margin-inline-start: 1.5rem;
+    text-transform: capitalize;
+    display: none;
+}
+
+
+.mail-menu.open .item-name {
+    display: block;
+}
+
+.mail-menu .menu-btn {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-self: center;
+    align-items: center;
+    
+    border: none;
+    background-color: transparent;
+    border-radius: 0 50px 50px 0;
+    font-family: roboto-bold;
+}
+
+.mail-menu-open .menu-btn {
+    background-color: var(--hover-color);
+}
+
 i.compose.active {
     background-color: var(--compose-mail-bg-color);
-    padding-inline-start: .5em;
     border-radius: 20px;
 }
 
 .mail-menu img.active {
     background-color: var(--hover-color);
     border-radius: 50%;
-        cursor: pointer;
+    cursor: pointer;
 }
