@@ -1,5 +1,8 @@
-export function MailMenu() {
-const [activeItem, setActiveItem] = useState('inbox')
+import { mailService } from "../services/mail.service.js"
+const { useState } = React
+
+export function MailMenu({ isMenuOpen }) {
+    const [activeItem, setActiveItem] = useState('inbox')
     const itemsMap = [
         { key: 'inbox' },
         { key: 'star' },

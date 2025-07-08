@@ -11,6 +11,11 @@
     }
 }
 
+.mail-menu.open{
+    width: 200px;
+    transition: 'width' 500ms;
+}
+
 i.compose.active {
     background-color: var(--compose-mail-bg-color);
     padding-inline-start: .5em;

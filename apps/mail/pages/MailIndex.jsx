@@ -3,7 +3,7 @@ import { mailService } from "../services/mail.service.js"
 import { getTruthyValues } from "../../../services/util.service.js"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailMenu } from "../cmps/MailMenu.jsx"
-import { MailFilter } from "../cmps/MailFilter.jsx"
+import { MailFilter, MailSort } from "../cmps/MailFilter.jsx"
 import { MailDetails } from "../cmps/MailDetails.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
@@ -94,26 +94,33 @@ export function MailIndex() {
         })
     }
 
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    function handleMenuToggle(isMenuOpen) {
+        setIsMenuOpen(prev => !prev)
+    }
+    
     if (!mails) return <div>Loading...</div>
     return (
         <Fragment>
             <section className="mail-index container">
 
-                    <MailMenu />
-                    <MailFilter defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
-                    {mailId ? (
-                        <MailDetails onReply={onReply}
-                            onToggleRead={onToggleRead}
-                            onMoveToTrash={onMoveToTrash} />
-                    ) : (
-                        <MailList mails={mails}
-                            onToggleCheckbox={onToggleCheckbox}
-                            onToggleStar={onToggleStar}
-                            onReply={onReply}
-                            onToggleRead={onToggleRead}
-                            onMoveToTrash={onMoveToTrash} />
-                    )}
-                </section>
+                <MailMenu isMenuOpen={isMenuOpen} />
+                <MailFilter defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} onToggleMenu={()=>handleMenuToggle(isMenuOpen)} />
+                <MailSort defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
+                {mailId ? (
+                    <MailDetails onReply={onReply}
+                        onToggleRead={onToggleRead}
+                        onMoveToTrash={onMoveToTrash} />
+                ) : (
+                    <MailList mails={mails}
+                        onToggleCheckbox={onToggleCheckbox}
+                        onToggleStar={onToggleStar}
+                        onReply={onReply}
+                        onToggleRead={onToggleRead}
+                        onMoveToTrash={onMoveToTrash} />
+                )}
+            </section>
         </Fragment>
     )
 }
