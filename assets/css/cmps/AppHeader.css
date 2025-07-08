@@ -25,7 +25,7 @@
     border-radius: 50%;
 }
 
-.active {
+nav a.active {
     display: inline-block;
     text-decoration: none;
     background-color: var(--hover-color);
