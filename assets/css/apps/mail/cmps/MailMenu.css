@@ -1,3 +1,24 @@
-.mail-menu{
+.mail-menu {
     background-color: var(--main-bg-color);
+    /* position: fixed; */
+    /* height: 100%; */
+    width:55px;
+    /* z-index: 2; */
+
+    >i {
+        padding: .2em;
+        margin-block: .2em;
+    }
+}
+
+i.compose.active {
+    background-color: var(--compose-mail-bg-color);
+    padding-inline-start: .5em;
+    border-radius: 20px;
+}
+
+.mail-menu img.active {
+    background-color: var(--hover-color);
+    border-radius: 50%;
+        cursor: pointer;
 }
