@@ -6,16 +6,6 @@
     border-bottom: 1px solid var(--border-color);
 }
 
-nav a {
-    /* margin: .5em; */
-}
-
-nav a.active {
-    color: var(--color1);
-    font-weight: bold;
-    text-decoration: underline;
-}
-
 .apsus-logo {
     width: 200px;
 }
@@ -31,6 +21,13 @@ nav a.active {
 
 .mail-logo:hover,
 .note-logo:hover {
+    background-color: var(--hover-color);
+    border-radius: 50%;
+}
+
+.active {
+    display: inline-block;
+    text-decoration: none;
     background-color: var(--hover-color);
     border-radius: 50%;
 }
