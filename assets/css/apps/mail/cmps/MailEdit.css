@@ -1,0 +1,78 @@
+.compose-modal form {
+    position: fixed;
+    width: 70vw;
+    background-color: white;
+    max-width: 600px;
+    bottom: 5px;
+    right: 50px;
+}
+
+.compose-modal form {
+    width: 400px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: 10% 10% 70% 10%;
+    grid-template-rows: 10% .3fr .3fr 3fr .5fr;
+    grid-template-areas:
+        "header header header close "
+        "label-to input-to input-to input-to "
+        "label-sub label-sub input-sub input-sub "
+        "body body body body "
+        "send send . . ";
+
+    >* {
+        padding-inline: .5em;
+    }
+}
+
+.compose-header {
+    border-radius: 10px 0 0 0;
+    background-color: var(--compose-mail-bg-color);
+    grid-area: header;
+}
+
+.close-btn {
+    border-radius: 0 10px 0 0;
+    grid-area: close;
+    background-color: var(--compose-mail-bg-color);
+    border: none;
+}
+
+button.close-btn:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.label-to {
+    padding-block: .5em;
+    grid-area: label-to;
+    border-bottom: 1px solid var(--border-color);
+
+}
+
+.input-to {
+    grid-area: input-to;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.label-sub {
+    padding-block: .5em;
+    grid-area: label-sub;
+    border-bottom: 1px solid var(--border-color);
+
+}
+
+.input-sub {
+    grid-area: input-sub;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.compose-modal,
+.compose-body {
+    grid-area: body;
+    border: none;
+}
+
+.send-btn {
+    grid-area: send;
+}

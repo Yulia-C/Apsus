@@ -4,7 +4,6 @@ const { useState } = React
 export function MailMenu({ isMenuOpen, onOpenModal }) {
     const [activeItem, setActiveItem] = useState('inbox')
     const [mailStatus, setMailStatus] = useState('inbox')
-    const [composeMail, setComposeMail] = useState()
 
     const itemsMap = [
         { key: 'inbox' },
@@ -18,7 +17,7 @@ export function MailMenu({ isMenuOpen, onOpenModal }) {
 
     return (
         <section className={`${isMenuOpen ? 'open' : ''} mail-menu aside flex column`}>
-            <button className="menu-btn">
+            <button onClick={()=>onOpenModal()} className="menu-btn">
                 <i title="compose" className="icon outlined compose active" />
                 <span className="item-name">Compose</span>
             </button>
