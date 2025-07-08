@@ -1,4 +1,5 @@
 import { mailService } from "../services/mail.service.js"
+import { getFullYear, getMonthName } from "../../../services/util.service.js"
 import { LongTxt } from "./LongTxt.jsx"
 const { useState, useEffect } = React
 const { useNavigate } = ReactRouterDOM
@@ -18,7 +19,7 @@ export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onTog
 
     if (!mails) return <div>Loading...</div>
     return (
-        <table className="mail-list">
+        <table className="mail-list main">
             <tbody>
                 {mails.map((mail) => (
                     <tr key={mail.id} className={`${mail.isRead ? 'read' : 'unread'} mail-preview`}
@@ -37,13 +38,14 @@ export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onTog
                         <td onClick={() => navigate(`/mail/${mail.id}`)} className="mail-body">
                             {mail.body && <LongTxt txt={mail.body} minLength={3} maxLength={50} />}
                         </td>
+
                         {(isMailHovered === mail.id) ? <td className="mail-actions">
                             <i onClick={() => onReply(mail.id)} title="reply" className="icon outlined reply" />
-
                             {mail.isRead ? <i onClick={() => onToggleRead(mail.id)} title="mark-unread" className="icon outlined mark-unread" /> :
                                 <i onClick={() => onToggleRead(mail.id)} title="mark-read" className="icon outlined mark-read" />}
                             <i onClick={() => onMoveToTrash(mail.id)} title="send to trash" className="icon outlined delete" />
-                        </td> : <td className="mail-date">{new Date(mail.sentAt).toLocaleDateString('en-US')}</td>
+                        </td> : <td className="mail-date">{getMonthName(mail.sentAt)} {getFullYear(mail.sentAt)}</td>
+                        
                         }
 
                     </tr>

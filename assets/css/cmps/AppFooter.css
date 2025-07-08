@@ -1,0 +1,9 @@
+footer {
+    border-top: 1px solid var(--border-color);
+    padding-block: 2rem 1.5rem;
+    margin-top: auto;
+    margin-block-start: auto;
+    font-family: "lato-light";
+    color: var(--icon-color);
+    justify-content: center;
+}

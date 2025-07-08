@@ -1,7 +1,53 @@
-.container {
-    padding: 0 1.5em;
+.container:not(footer) {
+    padding-inline-start: var(--layout-padding);
 }
 
+/* App layout */
+.root-cmp {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.routes-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mail layout */
+@media (min-width: 700px) {
+
+    .mail-index {
+        position: relative;
+        display: grid;
+
+        grid-template-columns: .5fr 9fr;
+        grid-template-rows: 70px 50px 1fr;
+        grid-template-areas:
+            "m-header m-header"
+            "aside mail-filter"
+            "aside main";
+        row-gap: .3rem;
+    }
+
+    .m-header {
+        grid-area: m-header;
+    }
+
+    .mail-filter {
+        grid-area: mail-filter;
+        display: grid;
+    }
+
+    .mail-menu.aside {
+        grid-area: aside;
+    }
+
+    .main {
+        grid-area: main;
+    }
+}
 
 
 

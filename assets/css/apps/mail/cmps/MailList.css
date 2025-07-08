@@ -1,14 +1,23 @@
 .mail-list {
-     width: 100%;
-     border-spacing:0;
-     background-color: white;
- }
-
-td.mail-date, td.mail-actions{
-    /* display:flex; */
-    min-width:90px;
+    width: 100%;
+    border-spacing: 0;
+    background-color: white;
 }
 
-td.mail-form, td.mail-subject{
-    width:fit-content;
+tr>td{
+    height: 35px;
+}
+
+td.mail-date,
+td.mail-actions {
+    min-height: 35px;
+    /* display:flex; */
+    /* justify-content: end; */
+    /* align-items: center; */
+    min-width: 90px;
+}
+
+td.mail-form,
+td.mail-subject {
+    width: min-content;
 }

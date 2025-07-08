@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Filled");
+/* @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Filled"); */
 
 .icon::before {
     font-family: 'Material Symbols Outlined';
@@ -15,10 +15,10 @@
     display: inline-block;
     vertical-align: middle;
     object-fit: contain;
+    cursor: pointer;
 }
 
-.icon.outlined:hover:not(.icon.search)::before {
-    cursor:pointer;
+.icon.outlined:hover:not(.icon.search, .icon.compose)::before {
     background-color: var(--hover-color);
     border-radius: 50%;
 }
@@ -30,12 +30,47 @@
 .icon.search::before {
     content: "search";
     font-size: 30px;
-    margin-inline-start: .7rem;
+    margin-inline-start: 1rem;
+}
+
+i.icon.search {
+    margin-block: auto;
 }
 
 .starred {
-    padding: .1rem;
+    padding: .2em;
     width: 24px;
+    height: 24px;
+}
+
+.m-inbox {
+    padding: .15rem;
+    width: 24px;
+    height: 24px;
+}
+
+.m-star {
+    padding: .15rem;
+    width: 24px;
+    height: 24px;
+}
+
+.m-sent {
+    padding: .15rem;
+    width: 24px;
+    height: 24px;
+}
+
+.m-draft {
+    padding: .15rem;
+    width: 24px;
+    height: 24px;
+}
+
+.m-delete {
+    padding: .15rem;
+    width: 24px;
+    height: 24px;
 }
 
 .starred:hover {
@@ -51,7 +86,7 @@
     content: "star";
 }
 
-.icon.send::before {
+.icon.sent::before {
     content: "send";
 }
 
@@ -70,6 +105,7 @@
 
 .icon.compose::before {
     content: "edit";
+    font-size: 30px;
 }
 
 .icon.arrow-back::before {
