@@ -1,6 +1,7 @@
 
 import { CreateContainer } from "../cmps/CreateContainer.jsx";
 import { NoteList } from "../cmps/NoteList.jsx";
+import { SideBar } from "../cmps/SideBar.jsx";
 import { noteService } from "../services/note.service.js";
 const { useState, useEffect } = React;
 
@@ -24,9 +25,14 @@ export function NoteIndex() {
 
     return (
         <section className="note-index">
+            <button title="Menu" className="fa burger-icon" onClick={() => {
+                document.querySelector('.note-index').classList.toggle('open')
+            }}></button>
             <input className="search input create-container" placeholder="Search" type="text" />
+
             <CreateContainer />
             <NoteList notes={notes} />
+            <SideBar />
 
 
 
