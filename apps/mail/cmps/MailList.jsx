@@ -45,7 +45,7 @@ export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onTog
                                 <i onClick={() => onToggleRead(mail.id)} title="mark-read" className="icon outlined mark-read" />}
                             <i onClick={() => onMoveToTrash(mail.id)} title="send to trash" className="icon outlined delete" />
                         </td> : <td className="mail-date">{getMonthName(mail.sentAt)} {getFullYear(mail.sentAt)}</td>
-                        
+
                         }
 
                     </tr>

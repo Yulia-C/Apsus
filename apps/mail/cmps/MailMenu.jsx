@@ -1,7 +1,7 @@
 import { mailService } from "../services/mail.service.js"
 const { useState } = React
 
-export function MailMenu({ isMenuOpen }) {
+export function MailMenu({ isMenuOpen, onOpenModal }) {
     const [activeItem, setActiveItem] = useState('inbox')
     const [mailStatus, setMailStatus] = useState('inbox')
 
@@ -17,7 +17,7 @@ export function MailMenu({ isMenuOpen }) {
 
     return (
         <section className={`${isMenuOpen ? 'open' : ''} mail-menu aside flex column`}>
-            <button className="menu-btn">
+            <button onClick={()=>onOpenModal()} className="menu-btn">
                 <i title="compose" className="icon outlined compose active" />
                 <span className="item-name">Compose</span>
             </button>
@@ -25,17 +25,17 @@ export function MailMenu({ isMenuOpen }) {
             {itemsMap.map(item => {
                 const isActive = activeItem === item.key
 
-                return isActive ? 
-                (<button key={item.key} className="menu-btn">
+                return isActive ?
+                    (<button key={item.key} className="menu-btn">
 
-                    <img onClick={() => setActiveItem(item.key)}
-                        title={item.key}
-                        className={`m-${item.key} active`}
-                        src={`assets/icons/m-${item.key}.svg`} />
+                        <img onClick={() => setActiveItem(item.key)}
+                            title={item.key}
+                            className={`m-${item.key} active`}
+                            src={`assets/icons/m-${item.key}.svg`} />
 
-                    <span className="item-name">{item.key}</span>
-                    <span className="item-count"></span>
-                </button>)
+                        <span className="item-name">{item.key}</span>
+                        <span className="item-count"></span>
+                    </button>)
                     : (<button key={item.key} className="menu-btn">
                         <i title={item.key}
                             className={`icon outlined ${item.key}`}

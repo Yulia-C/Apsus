@@ -24,11 +24,12 @@
 @import './apps/mail/MailIndex.css';
 
 /* Mail Cmps */
-@import './apps/mail/MailDetails.css';
+@import './apps/mail/cmps/MailDetails.css';
 @import './apps/mail/cmps/MailFilter.css';
 @import './apps/mail/cmps/MailList.css';
 @import './apps/mail/cmps/MailPreview.css';
 @import './apps/mail/cmps/MailMenu.css';
+@import './apps/mail/cmps/MailEdit.css';
 
 /* Note Cmps */
 @import './apps/note/CreateContainer.css';

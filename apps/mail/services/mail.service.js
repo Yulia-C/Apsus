@@ -18,6 +18,7 @@ export const mailService = {
     getFilterFromSearchParams,
     moveToTrash,
     moveToDraft,
+    getMailCategories,
 
 }
 
@@ -71,8 +72,8 @@ function save(mail) {
 
 function getEmptyMail() {
     const mail = {
-        id: makeId(),
-        createdAt: new Date(),
+        id: utilService.makeId(),
+        createdAt: Date.now(),
         subject: '',
         body: '',
         isRead: Math.random() > 0.7,
@@ -85,6 +86,14 @@ function getEmptyMail() {
         to: ''
     }
     return mail
+}
+
+function getMailCategories() {
+   return storageService.query(MAIL_KEY)
+        .then(mails =>{
+            return [...new Set(mails.flatMap(mail => mail.status))]
+        })
+        
 }
 
 function getDefaultFilter() {
