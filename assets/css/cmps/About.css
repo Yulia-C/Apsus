@@ -1,0 +1,67 @@
+.about-container {
+    font-family: lato-light;
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--icon-color);
+    background-color: var(--main-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em;
+}
+
+.about-container h1 {
+    padding-block-start: 1em;
+}
+
+.about-box {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 0;
+    gap: 10vw;
+}
+
+.about-card {
+    background-color: white;
+    border-radius: 10px;
+    border: .1px solid var(--shadow-color);
+    min-height: 16em;
+    max-width: 15em;
+
+    >p {
+        padding-inline: 1.2em;
+        padding-block: .5em;
+        text-align: center;
+    }
+}
+
+.git-logo {
+    height: 2em;
+    width: 2em;
+    margin-block-end: 1em;
+}
+
+.git-logo:hover {
+    border-radius: 50%;
+    box-shadow: 0 0 10px 0px var(--shadow-color);
+    transition: box-shadow .3s;
+}
+
+.about-card img:not(.git-logo) {
+    max-height: 15em;
+    max-width: 13em;
+    border-radius: 10px;
+}
+
+.about-card:hover {
+    box-shadow: 0 0 10px 0px var(--shadow-color);
+    transition: .3s;
+}
+
+@media (min-width: 750px) {
+    .about-box {
+        display: flex;
+        justify-items: space-between;
+        flex-direction: row;
+    }
+}
