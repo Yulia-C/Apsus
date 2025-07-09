@@ -8,6 +8,9 @@
 }
 
 .compose-modal form {
+    box-shadow: 0px 2px 17px 1px var(--shadow-color);
+    border-radius: 10px 10px 0 0;
+
     width: 400px;
     height: 400px;
     display: grid;
@@ -20,21 +23,35 @@
         "body body body body "
         "send send . . ";
 
-    >* {
-        padding-inline: .5em;
+    >*:not(.send-btn) {
+        color: var(--icon-color);
+        padding-inline: 1em;
     }
 }
 
 .compose-header {
+    font-family: lato-bold;
     border-radius: 10px 0 0 0;
-    background-color: var(--compose-mail-bg-color);
+    background-color: var(--search-color);
     grid-area: header;
+}
+
+.send-btn {
+    border-radius: 50px;
+    max-width: 80px;
+    padding: .5em;
+    padding-inline: 1em;
+    margin: auto;
+    font-family: roboto-bold;
+    font-size: 1em;
+    color: white;
+    background-color: #145fd6
 }
 
 .close-btn {
     border-radius: 0 10px 0 0;
     grid-area: close;
-    background-color: var(--compose-mail-bg-color);
+    background-color: var(--search-color);
     border: none;
 }
 
@@ -47,7 +64,6 @@ button.close-btn:hover {
     padding-block: .5em;
     grid-area: label-to;
     border-bottom: 1px solid var(--border-color);
-
 }
 
 .input-to {

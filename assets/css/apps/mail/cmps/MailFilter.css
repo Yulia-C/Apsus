@@ -22,7 +22,7 @@
    }
 
    .mail-filter select,
-   label{
+   label.sentAt{
        font-family: roboto-light;
        display: flex;
        margin-inline: 1em;
@@ -33,7 +33,7 @@
        padding-inline: .2em;
    }
 
-   .active {
+   label.active {
        background-color: var(--hover-color);
    }
 

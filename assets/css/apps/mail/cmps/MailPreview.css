@@ -2,13 +2,13 @@
     border-bottom: 1.5px solid var(--border-color);
 }
 
-p.long-txt{
-    margin:0;
+p.long-txt {
+    margin: 0;
 }
 
 .mail-preview:hover {
     box-shadow: 0px 1px 5px 0px var(--shadow-color);
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .read {

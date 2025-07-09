@@ -1,5 +1,5 @@
 .container:not(footer) {
-    padding-inline-start: var(--layout-padding);
+    padding-inline-start: 1em;
 }
 
 /* App layout */
@@ -22,7 +22,7 @@
         position: relative;
         display: grid;
 
-        grid-template-columns: .5fr 9fr;
+        grid-template-columns: .2fr 9fr;
         grid-template-rows: 70px 50px 1fr;
         grid-template-areas:
             "m-header m-header"
