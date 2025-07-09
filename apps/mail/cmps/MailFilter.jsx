@@ -44,7 +44,7 @@ export function MailFilter({ defaultFilter, onSetFilterBy, onToggleMenu }) {
 
 export function MailSort({ defaultFilter, onSetFilterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...defaultFilter })
-    const { sentAt, isRead, isStarred } = filterByToEdit
+    const { sentAt } = filterByToEdit
 
     useEffect(() => {
         onSetFilterBy(filterByToEdit)

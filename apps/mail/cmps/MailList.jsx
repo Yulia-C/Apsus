@@ -18,6 +18,7 @@ export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onTog
     }
 
     if (!mails) return <div>Loading...</div>
+    if (!mails.length) return <div className="empty-div">Your inbox is empty...</div>
     return (
         <table className="mail-list main">
             <tbody>

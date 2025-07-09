@@ -26,6 +26,9 @@
 .icon.delete::before {
     content: "delete";
 }
+.icon.trash::before {
+    content: "delete";
+}
 
 .icon.search::before {
     content: "search";
@@ -67,7 +70,7 @@ i.icon.search {
     height: 24px;
 }
 
-.m-delete {
+.m-trash {
     padding: .15rem;
     width: 24px;
     height: 24px;
