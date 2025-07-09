@@ -49,7 +49,7 @@ export function MailDetails({ onMoveToTrash, onReply, onToggleRead }) {
                             }} title="send to trash" className="icon outlined delete" />
                         </div>
                     </div>
-                    <div className="mail-details-content container">
+                    <div className="mail-details-content">
                         <p className="mail-subject-content">Subject: {mail.subject}</p>
                         <p className="mail-from-content">From: {mail.from}</p>
                         <p className="mail-to-content">To: {mail.to}</p>

@@ -1,3 +1,16 @@
+.mail-details-content {
+    height: 100vh;
+    font-size: 1.3rem;
+
+    >p {
+        padding-block: .3em;
+    }
+}
+
+p.mail-body-content {
+    width: 70%;
+}
+
 .mail-d-actions {
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
@@ -7,16 +20,13 @@
     }
 }
 
-.mail-actions{
-    max-width:100%;
-}
-
-.mail-details-content {
-    font-size: 1.3rem;
+.mail-actions {
+    max-width: 100%;
 }
 
 p.mail-subject-content {
     font-family: 'lato', Arial, Helvetica, sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
 }
