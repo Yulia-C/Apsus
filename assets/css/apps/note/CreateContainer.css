@@ -4,13 +4,22 @@
     align-items: center;
     justify-content: space-between;
 
+    width: 50%;
     margin-inline: 1rem;
     padding: 10px;
-    border: solid 1px;
+    border: none;
     border-radius: .5em;
-    height: 1.5em;
     font-size: 1.2em;  
+
     background-color: rgb(241, 203, 157);
+    box-shadow: 0 0 6px 1px rgb(0 0 0 / 48%);
+    
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .create-container input {
