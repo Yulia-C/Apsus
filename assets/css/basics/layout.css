@@ -17,6 +17,7 @@
 
 /* Mail layout */
 @media (min-width: 700px) {
+
     .mail-index {
         position: relative;
         display: grid;

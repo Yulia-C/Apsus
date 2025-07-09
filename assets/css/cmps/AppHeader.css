@@ -1,9 +1,13 @@
 .app-header {
+    font-family: lato-light;
+    color: gray;
+    font-size: 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--main-bg-color);
     border-bottom: 1px solid var(--border-color);
+    max-height:4em;
 }
 
 .apsus-logo {
@@ -12,22 +16,22 @@
 
 .mail-logo,
 .note-logo {
-    padding-inline: .5em;
-    padding-block: .3em;
-    width: 60px;
-    height: 64px;
-    object-fit: contain;
+  height: 3.125rem;
+    width: 3.125rem;
 }
 
-.mail-logo:hover,
-.note-logo:hover {
-    background-color: var(--hover-color);
-    border-radius: 50%;
+.nav-bar{
+    display:flex;
+    flex-direction: row;
+}
+
+.nav-bar a{
+     display: grid;
+    place-items: center;
+    height: 4.125rem;
+    width: 4.125rem;
 }
 
 nav a.active {
-    display: inline-block;
-    text-decoration: none;
-    background-color: var(--hover-color);
-    border-radius: 50%;
+    border-bottom: 1px solid black;
 }
