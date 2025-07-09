@@ -21,7 +21,7 @@
 }
 
 .mail-filter select,
-label {
+label.sentAt {
     font-family: roboto-light;
     display: flex;
     margin-inline: 1em;
@@ -35,7 +35,7 @@ label {
     background-color: var(--hover-color);
 }
 
-.mail-filter label>input {
+.mail-filter label.sentAt>input {
     display: none;
 }
 
