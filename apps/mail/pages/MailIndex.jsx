@@ -29,7 +29,8 @@ export function MailIndex() {
 
     function loadMails() {
         mailService.query(filterBy)
-            .then(mails => setMails(mails.filter(mail => mail.status.includes('inbox'))))
+            .then(mails => setMails(mails))
+            // .then(mails=> setMails(mails =>mails.filter(mail=> mail.status === 'inbox')))
             .catch(err => console.log('err:', err))
     }
 
@@ -103,11 +104,9 @@ export function MailIndex() {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     useEffect(() => {
-        console.log('isModalOpen:', isModalOpen)
     }, [isModalOpen])
 
     function openModal() {
-        console.log('isModalOpen:', isModalOpen)
         setIsModalOpen(true)
     }
 
@@ -120,10 +119,10 @@ export function MailIndex() {
         <Fragment>
             <section className="mail-index container">
 
-                <MailMenu isMenuOpen={isMenuOpen} onOpenModal={openModal} />
+                <MailMenu isMenuOpen={isMenuOpen} onOpenModal={openModal} defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
                 <MailEdit isModalOpen={isModalOpen} onCloseModal={closeModal} />
                 <MailFilter defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} onToggleMenu={() => handleMenuToggle(isMenuOpen)} />
-                 <MailSort defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
+                <MailSort defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
 
                 {mailId ? (
                     <MailDetails onReply={onReply}

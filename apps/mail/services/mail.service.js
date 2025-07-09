@@ -18,7 +18,7 @@ export const mailService = {
     getFilterFromSearchParams,
     moveToTrash,
     moveToDraft,
-    getMailCategories,
+    getMailByCategory,
 
 }
 
@@ -46,6 +46,10 @@ function query(filterBy = {}) {
             if (typeof filterBy.isStarred === 'boolean') {
                 mails = mails.filter(mail => mail.isStarred === filterBy.isStarred)
             }
+
+            // if (filterBy.category) {
+            //     mails = mails.filter(mail => mail.status === filterBy.category)
+            // }
             return mails
         })
 }
@@ -88,19 +92,36 @@ function getEmptyMail() {
     return mail
 }
 
-function getMailCategories() {
-   return storageService.query(MAIL_KEY)
-        .then(mails =>{
-            return [...new Set(mails.flatMap(mail => mail.status))]
-        })
-        
+function getMailByCategory() {
+    return storageService.query(MAIL_KEY)
+        .then(mails => mails.reduce((acc, mail) => {
+            const categories = []
+            let status = mail.status
+
+            if (status === 'trash') status = 'delete'
+            if (status) {
+                if (Array.isArray(status)) {
+                    categories.push(...status)
+                } else if (status) {
+                    categories.push(status)
+                }
+                if (mail.isStarred) {
+                    categories.push('star')}
+            }
+            categories.forEach(category => {
+                if (!acc[category]) acc[category] = []
+                acc[category].push(mail)
+            })
+            return acc
+
+        }, {})
+        )
 }
 
 function getDefaultFilter() {
     return {
         txt: '', isStarred: null, isRead: null, isChecked: null, sentAt: null,
-        status: [],
-        // 'inbox/sent/trash/draft'
+        category:[],
     }
 }
 
@@ -125,7 +146,7 @@ function getFilterFromSearchParams(searchParams) {
     const isStarred = searchParams.get('isStarred') || ''
     const isRead = searchParams.get('isRead') || ''
     const isChecked = searchParams.get('isChecked') || ''
-    const status = searchParams.getAll("status") || ''
+    const status = searchParams.get("inbox") || ''
 
     return {
         txt,
