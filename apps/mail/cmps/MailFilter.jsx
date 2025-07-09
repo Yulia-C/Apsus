@@ -23,12 +23,6 @@ export function MailFilter({ defaultFilter, onSetFilterBy, onToggleMenu }) {
                 value = target.checked
                 break
         }
-
-        if (field === 'isRead' || field === 'isStarred') {
-            if (value === 'true') value = true
-            else if (value === 'false') value = false
-            else if (value = '') value = null
-        }
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
@@ -50,7 +44,7 @@ export function MailFilter({ defaultFilter, onSetFilterBy, onToggleMenu }) {
 
 export function MailSort({ defaultFilter, onSetFilterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...defaultFilter })
-    const { txt } = filterByToEdit
+    const { sentAt, isRead, isStarred } = filterByToEdit
 
     useEffect(() => {
         onSetFilterBy(filterByToEdit)
@@ -70,27 +64,33 @@ export function MailSort({ defaultFilter, onSetFilterBy }) {
                 break
         }
 
-        if (field === 'isRead' || field === 'isStarred') {
+        if ( field === 'isStarred') {
             if (value === 'true') value = true
             else if (value === 'false') value = false
             else if (value = '') value = null
         }
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
+
     return (
         <section className="mail-filter">
             <form className="flex row">
-                <select id="isRead" onChange={handleChange} className="isRead" name="isRead">
-                    <option value="">All mails</option>
-                    <option value={true}>Read</option>
-                    <option value={false}>Unread</option>
-                </select>
+
+                <label className={`${isRead ? 'active' : ''}`} htmlFor="isRead">
+                Sort by read
+                    <input id="isRead" onChange={handleChange} type="checkbox" value={isRead || ''} name="isRead"/>
+                </label> 
 
                 <select id="isStarred" name="isStarred" onChange={handleChange}>
                     <option value="">⭐ All mails</option>
                     <option value="true">Starred</option>
                     <option value="false">Unstarred</option>
                 </select>
+
+                <label htmlFor="sentAt" className={`${sentAt ? 'active' : ''}`}>
+                    Sort by date
+                    <input id="sentAt" onChange={handleChange} type="checkbox" value={sentAt || ''} name="sentAt" />
+                </label>
             </form>
         </section>
 
