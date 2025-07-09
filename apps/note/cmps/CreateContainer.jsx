@@ -23,9 +23,6 @@ export function CreateContainer() {
     }
 
     
-
-
-
     return (
         <section className="create-container">
             <input type="text" name="input" placeholder="Note..." />

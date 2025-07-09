@@ -50,3 +50,11 @@
 .fa.add-icon::before{
     content:"\2b";
 }
+
+.fa.burger-icon::before{
+    content:"\f0c9";
+}
+
+.fa.bulb-icon::before{
+    content:"\f0eb";
+}
