@@ -4,20 +4,22 @@
     background-color: white;
 }
 
-tr>td{
-    height: 35px;
+table tr>td{
+    max-height: 35px;
 }
 
 td.mail-date,
 td.mail-actions {
-    min-height: 35px;
-    /* display:flex; */
-    /* justify-content: end; */
-    /* align-items: center; */
+    max-height: 35px;
     min-width: 90px;
 }
 
 td.mail-form,
 td.mail-subject {
     width: min-content;
+}
+
+.empty-div{
+    font-family: roboto-light;
+    text-align: center;
 }

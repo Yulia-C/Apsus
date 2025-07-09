@@ -44,7 +44,7 @@ export function MailFilter({ defaultFilter, onSetFilterBy, onToggleMenu }) {
 
 export function MailSort({ defaultFilter, onSetFilterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...defaultFilter })
-    const { sentAt, isRead, isStarred } = filterByToEdit
+    const { sentAt } = filterByToEdit
 
     useEffect(() => {
         onSetFilterBy(filterByToEdit)
@@ -64,7 +64,7 @@ export function MailSort({ defaultFilter, onSetFilterBy }) {
                 break
         }
 
-        if ( field === 'isStarred') {
+        if (field === 'isRead' || field === 'isStarred') {
             if (value === 'true') value = true
             else if (value === 'false') value = false
             else if (value = '') value = null
@@ -76,10 +76,11 @@ export function MailSort({ defaultFilter, onSetFilterBy }) {
         <section className="mail-filter">
             <form className="flex row">
 
-                <label className={`${isRead ? 'active' : ''}`} htmlFor="isRead">
-                Sort by read
-                    <input id="isRead" onChange={handleChange} type="checkbox" value={isRead || ''} name="isRead"/>
-                </label> 
+                <select id="isRead" name="isRead" onChange={handleChange}>
+                    <option value="">All mails</option>
+                    <option value="true">Read</option>
+                    <option value="false">Unread</option>
+                </select>
 
                 <select id="isStarred" name="isStarred" onChange={handleChange}>
                     <option value="">⭐ All mails</option>
@@ -87,7 +88,7 @@ export function MailSort({ defaultFilter, onSetFilterBy }) {
                     <option value="false">Unstarred</option>
                 </select>
 
-                <label htmlFor="sentAt" className={`${sentAt ? 'active' : ''}`}>
+                <label htmlFor="sentAt" className={`${sentAt ? 'active' : ''} sentAt`}>
                     Sort by date
                     <input id="sentAt" onChange={handleChange} type="checkbox" value={sentAt || ''} name="sentAt" />
                 </label>
