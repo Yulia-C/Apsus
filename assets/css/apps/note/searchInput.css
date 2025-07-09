@@ -1,0 +1,10 @@
+
+.search-input {
+    border: none;
+    border-radius: .5rem;
+    padding: .5rem;
+    height: 30px;
+    place-self: center stretch;
+    margin-inline: 1rem;
+    background-color: var(--search-color);
+}

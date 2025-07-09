@@ -48,7 +48,9 @@
 .burger-icon {
     font-size: 1.5rem;
     color: var(--icon-color);
-    background-color: transparent;
+    background-color: var(--search-color);
+    border-radius: 0 .5rem .5rem 0;
+    height: 50%;
     border: none;
     cursor: pointer;
 }

@@ -28,7 +28,7 @@ export function NoteIndex() {
             <button title="Menu" className="fa burger-icon" onClick={() => {
                 document.querySelector('.note-index').classList.toggle('open')
             }}></button>
-            <input className="search input create-container" placeholder="Search" type="text" />
+            <input className="search-input" placeholder="Search" type="text" />
 
             <CreateContainer />
             <NoteList notes={notes} />
