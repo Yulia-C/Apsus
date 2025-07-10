@@ -11,7 +11,7 @@
 @import '../icons/g-icons.css';
 
 /* Cmps */
-@import './cmps/home.css';
+@import './cmps/Home.css';
 @import './cmps/About.css';
 @import './cmps/UserMsg.css';
 @import './cmps/AppHeader.css';
