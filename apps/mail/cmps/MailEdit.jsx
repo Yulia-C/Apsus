@@ -1,19 +1,37 @@
 import { mailService } from "../services/mail.service.js"
 import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
-const { useState, useEffect } = React
+const { useState, useEffect, Fragment } = React
 
-export function MailEdit({ isModalOpen, onCloseModal }) {
+export function MailEdit({ isModalOpen, onCloseModal, mailId }) {
 
     const [mailToEdit, setMailToEdit] = useState(mailService.getEmptyMail())
 
     useEffect(() => {
-        if (isModalOpen) {
-            setMailToEdit(mailService.getEmptyMail())
+        // if (isModalOpen)  setMailToEdit(mailService.getEmptyMail())
+        if (mailId) {
+            loadMailToEdit()
+            console.log('mailId:', mailId)
         }
-    }, [isModalOpen])
+    }, [mailId])
+
+    function loadMailToEdit() {
+        mailService.get(mailId)
+            .then(mail => {
+
+                const replyMail = {
+                    to: mail.from,
+                    subject: `Re: ${mail.subject}`,
+                    body: `\n\n\n\n------------------\n${mail.body}`,
+                }
+                setMailToEdit(replyMail)
+            })
+
+            .catch(err => showErrorMsg('Had a problem loading a reply'))
+    }
 
     function onSendMail(ev) {
         ev.preventDefault()
+
         const { id, ...mailWithoutId } = mailToEdit
         const timedMail = {
             ...mailWithoutId,
@@ -45,7 +63,7 @@ export function MailEdit({ isModalOpen, onCloseModal }) {
         setMailToEdit(prevMail => ({ ...prevMail, [field]: value }))
     }
 
-    const { to, subject, body } = mailToEdit
+    const { to, from, subject, body } = mailToEdit
     if (!isModalOpen) return null
 
     return (
@@ -58,10 +76,10 @@ export function MailEdit({ isModalOpen, onCloseModal }) {
                 <button onClick={onCloseModal} type="button" className="close-btn">X</button>
                 <label className="label-to" htmlFor="to">To:</label>
                 <input onChange={handleChange} className="input-to" value={to} type="email" id="to" name="to" pattern='/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i' required />
-
                 <label className="label-sub" htmlFor="subject">Subject</label>
                 <input onChange={handleChange} className="input-sub flex align-center" value={subject} type="text" id="subject" name="subject" required />
                 <textarea onChange={handleChange} className="compose-body" value={body} type="text" id="body" name="body" required />
+
 
                 <button type="submit" className="send-btn">Send</button>
             </form>

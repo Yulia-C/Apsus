@@ -77,10 +77,6 @@ export function MailIndex() {
             .catch(err => showErrorMsg('Had a problem trashing mail...'))
     }
 
-    function onReply(mailId) {
-
-    }
-
     function onToggleRead(mailId) {
         setMails(prevMails => {
             const upDatedMails = prevMails.map(mail => {
@@ -103,6 +99,13 @@ export function MailIndex() {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    const [replyMailId, setReplyMailId] = useState(null)
+
+    function onReply(mailId) {
+        setReplyMailId(mailId)
+        openModal()
+    }
+
     useEffect(() => {
     }, [isModalOpen])
 
@@ -111,6 +114,7 @@ export function MailIndex() {
     }
 
     function closeModal() {
+        setReplyMailId(null)
         setIsModalOpen(false)
     }
 
@@ -120,7 +124,7 @@ export function MailIndex() {
             <section className="mail-index container">
 
                 <MailMenu isMenuOpen={isMenuOpen} onOpenModal={openModal} defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
-                <MailEdit isModalOpen={isModalOpen} onCloseModal={closeModal} />
+                <MailEdit isModalOpen={isModalOpen} onCloseModal={closeModal} mailId={replyMailId} />
                 <MailFilter defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} onToggleMenu={() => handleMenuToggle(isMenuOpen)} />
                 <MailSort defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
 
