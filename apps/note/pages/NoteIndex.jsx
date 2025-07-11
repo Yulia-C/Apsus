@@ -22,12 +22,19 @@ export function NoteIndex() {
             .catch(err => console.log('err:', err))
     }
 
+    function toggleSideBar() {
+        document.querySelector('.note-index').classList.toggle('open')
+        document.querySelector('.side-bar').classList.toggle('open-side-bar')
+
+        document.querySelectorAll('.side-bar button span').forEach(element => {
+            element.classList.toggle('opacity-1')
+        })
+    }
+
 
     return (
         <section className="note-index">
-            <button title="Menu" className="fa burger-icon" onClick={() => {
-                document.querySelector('.note-index').classList.toggle('open')
-            }}></button>
+            <button title="Menu" className="fa burger-icon" onClick={toggleSideBar}></button>
             <input className="search-input" placeholder="Search" type="text" />
 
             <CreateContainer />
