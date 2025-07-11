@@ -64,7 +64,7 @@ function ImgInput({ createMode }) {
     return (
         <form action="submit" className="create-form">
             <input type="text" name="title-input" placeholder="Title..." />
-            <input type="text" name="img-input" placeholder="Image URL..." />
+            <input type="text" name="img-input" placeholder="Image URL..." onClick={console.log(createMode)} />
         </form>
     );
 }
@@ -80,7 +80,7 @@ function VideoInput({ createMode }) {
     return (
         <form action="submit" className="create-form">
             <input type="text" name="title-input" placeholder="Title..." />
-            <input type="text" name="video-input" placeholder="Video URL..." />
+            <input type="text" name="video-input" placeholder="Video URL..." onClick={console.log(createMode)} />
         </form>
     );
 }
