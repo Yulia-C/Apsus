@@ -13,5 +13,10 @@
     --border-color: #e0e0e0;
     --keep-selected-color: #feefc3;
 
+    
+    /* Keep vars */
+    --selected-icon-clr: #ba7900;
+    
     --layout-padding: 1.6rem
+
 }
