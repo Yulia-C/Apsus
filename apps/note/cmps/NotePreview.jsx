@@ -2,46 +2,55 @@
 import { CardBtnsBar } from 'CardBtnsBar.jsx';
 const { Fragment } = React;
 
-export function NotePreview({ note }) {
+export function NotePreview({ note, onRemoveNote }) {
 
     return (
-            <DynamicCard note={note} />
+        <DynamicCard
+            note={note}
+            onRemoveNote={onRemoveNote}
+        />
     )
 }
 
-function DynamicCard({ note }) {
+function DynamicCard({ note, onRemoveNote }) {
     switch (note.type) {
         case 'NoteTxt':
-            return <NoteTxt note={note} />;
+            return <NoteTxt note={note} onRemoveNote={onRemoveNote} />;
         case 'NoteImg':
-            return <NoteImg note={note} />;
+            return <NoteImg note={note} onRemoveNote={onRemoveNote} />;
         case 'NoteTodos':
-            return <NoteTodos note={note} />;
+            return <NoteTodos note={note} onRemoveNote={onRemoveNote} />;
     }
 }
 
-function NoteTxt({ note }) {
+function NoteTxt({ note, onRemoveNote }) {
     return (
         <div className="note-txt card" >
             <p>{note.info.txt}</p>
-            <CardBtnsBar />
+            <CardBtnsBar
+                noteId={note.id}
+                onRemoveNote={onRemoveNote}
+            />
         </div>
     );
 }
 
-function NoteImg({ note }) {
+function NoteImg({ note, onRemoveNote }) {
 
     return (
         <div className="note-txt card" >
             <h3 className="img-title">{note.info.title}</h3>
             <img src={note.info.url} />
-            <CardBtnsBar />
+            <CardBtnsBar
+                noteId={note.id}
+                onRemoveNote={onRemoveNote}
+            />
         </div>
 
     );
 }
 
-function NoteTodos({ note }) {
+function NoteTodos({ note, onRemoveNote }) {
     return (
         <div className="note-todos card" >
             <h3>{note.info.title}</h3>
@@ -52,7 +61,10 @@ function NoteTodos({ note }) {
                     </li>
                 ))}
             </ul>
-            <CardBtnsBar />
+            <CardBtnsBar
+                noteId={note.id}
+                onRemoveNote={onRemoveNote}
+            />
         </div>
     );
 }
