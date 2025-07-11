@@ -26,6 +26,8 @@
     scale: 1.1;
     border-radius: 1em;
     width: 140px;
+    /* color: #ba7900; */
+    color: var(--selected-icon-clr);
     background-color: var(--keep-selected-color);
     box-shadow: inset 0px 0px 3px 0px;
 }
@@ -62,7 +64,7 @@
 }
 
 .burger-icon:hover {
-    color: var(--selected-color);
+    color: var(--selected-icon-clr);
 }
 
 .open {
