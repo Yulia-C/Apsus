@@ -1,13 +1,13 @@
 .app-header {
     font-family: lato-light;
     color: gray;
-    font-size: 22px;
+    font-size: clamp(1rem, 4vw, 1.25rem);
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--main-bg-color);
     border-bottom: 1px solid var(--border-color);
-    max-height:4em;
+    max-height: 4em;
 }
 
 .apsus-logo {
@@ -16,17 +16,17 @@
 
 .mail-logo,
 .note-logo {
-  height: 3.125rem;
+    /* height: 3.125rem; */
     width: 3.125rem;
 }
 
-.nav-bar{
-    display:flex;
+.nav-bar {
+    display: flex;
     flex-direction: row;
 }
 
-.nav-bar a{
-     display: grid;
+.nav-bar a {
+    display: grid;
     place-items: center;
     height: 4.125rem;
     width: 4.125rem;

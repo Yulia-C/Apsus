@@ -1,31 +1,28 @@
-   .mail-search:not(.mail-filter) {
+   .mail-search{
        display: grid;
-       grid-template-columns: .2fr .5fr .5fr .5fr 4fr 1fr;
-       grid-template-areas:
-           "menu logo . . search  . ";
+       grid-template-columns: subgrid;
+       grid-area:m-header;
        align-items: center;
-
-       >.mail-logo {
-           grid-area: logo;
-       }
    }
 
 
-   .search-bar {
-       grid-area: search;
+   form.search-bar {
+       grid-area:m-header;
        display: flex;
        background-color: var(--search-color);
        border-radius: 50px;
        box-shadow: 0px 1px 3px 0px transparent;
        height: 3.5rem;
        transition: box-shadow 0.2s ease, background-color 0.2s ease;
+       width:70%;
+       margin-inline:auto;
    }
 
    .mail-filter select,
-   label.sentAt{
+   label.sentAt {
        font-family: roboto-light;
-       display: flex;
-       margin-inline: 1em;
+       margin-inline-start: 1em;
+       justify-self: center;
        align-self: center;
        border: 1px solid var(--border-color);
        background-color: white;

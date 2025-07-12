@@ -18,26 +18,26 @@ export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onTog
     }
 
     if (!mails) return <div>Loading...</div>
-    if (!mails.length) return <div className="empty-div">Your inbox is empty...</div>
     return (
-        <table className="mail-list main">
-            <tbody>
+
+        <table className="mail-list-container main">
+            {mails.length ? (<tbody className="mail-list">
                 {mails.map((mail) => (
-                    <tr key={mail.id} className={`${mail.isRead ? 'read' : 'unread'} mail-preview`}
+                    <tr key={mail.id} className={`${mail.isRead ? 'read' : 'unread'} mail-preview border-bot`}
                         onMouseEnter={() => handleMouseEnter(mail.id)} onMouseLeave={handleMouseLeave}
                     >
 
                         <td className="icon-cell">{mail.isChecked ?
                             <i onClick={() => onToggleCheckbox(mail.id)} className="icon outlined checkbox-checked" /> :
                             <i onClick={() => onToggleCheckbox(mail.id)} className="icon outlined checkbox" />}</td>
-                        <td className="icon-cell">{mail.isStarred ?
+                        <td className="icon-cell2">{mail.isStarred ?
                             <img onClick={() => onToggleStar(mail.id)} className="starred" src="assets/icons/star.svg" />
                             : <i onClick={() => onToggleStar(mail.id)} className="icon outlined star" />}
                         </td>
                         <td onClick={() => navigate(`/mail/${mail.id}`)} className="mail-from">{mail.from}</td>
                         <td onClick={() => navigate(`/mail/${mail.id}`)} className="mail-subject">{mail.subject}</td>
                         <td onClick={() => navigate(`/mail/${mail.id}`)} className="mail-body">
-                            {mail.body && <LongTxt txt={mail.body} minLength={3} maxLength={50} />}
+                            {mail.body}
                         </td>
 
                         {(isMailHovered === mail.id) ? <td className="mail-actions">
@@ -51,7 +51,7 @@ export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onTog
 
                     </tr>
                 ))}
-            </tbody>
+            </tbody>) : (<div className="empty-div">Your mailbox is empty...</div>)}
         </table>
     )
 }

@@ -1,18 +1,17 @@
  .home-container {
      font-family: lato-light;
-     text-align:center;
-     font-size: 22px;
+     font-size: clamp(1rem, 4vw, 1.3rem);
+     text-align: center;
      color: var(--icon-color);
      background-color: var(--main-bg-color);
-     height:80vh;
      display: flex;
      flex-direction: column;
      align-items: center;
      gap: 3em;
 
      >.p-welcome {
-        display:flex;
-        align-self:center;
+         display: flex;
+         align-self: center;
          padding-block: 1em;
          padding-inline: 1em;
      }
@@ -23,6 +22,7 @@
      flex-direction: column;
      padding: 1em 0;
      gap: 10vw;
+     margin-block-end: 2em;
  }
 
  .mail-card,
@@ -48,6 +48,7 @@
      font-size: 20px;
      padding: .4em.8em;
      border-radius: 10px;
+     margin-block: 1em;
      background-color: transparent;
      border: .1px solid var(--border-color);
  }
@@ -61,12 +62,4 @@
  .mail-card:hover {
      box-shadow: 0 0 10px 0px var(--shadow-color);
      transition: .3s;
- }
-
- @media (min-width: 750px) {
-     .box-container {
-         display: flex;
-         justify-items: space-between;
-         flex-direction: row;
-     }
  }

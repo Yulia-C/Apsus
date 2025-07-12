@@ -1,7 +1,7 @@
 .about-container {
     font-family: lato-light;
     text-align: center;
-    font-size: 1.2em;
+    font-size: clamp(1rem, 4vw, 1.25rem);
     color: var(--icon-color);
     background-color: var(--main-bg-color);
     display: flex;
@@ -11,7 +11,7 @@
 }
 
 .about-container h1 {
-    padding-block-start: 1em;
+    padding-block: 1em;
 }
 
 .about-box {

@@ -1,6 +1,3 @@
-.mail-preview td {
-    border-bottom: 1.5px solid var(--border-color);
-}
 
 p.long-txt {
     margin: 0;
@@ -13,6 +10,7 @@ p.long-txt {
 
 .read {
     background-color: var(--shown-mail-bg-color);
+    border-top: 1.5px solid var(--border-color);
 }
 
 .unread.mail-preview {

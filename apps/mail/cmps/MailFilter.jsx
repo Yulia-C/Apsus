@@ -30,13 +30,15 @@ export function MailFilter({ defaultFilter, onSetFilterBy, onToggleMenu }) {
     return (
         <section className="mail-search m-header">
             <i onClick={onToggleMenu} className="toggle-menu icon outlined menu"></i>
-            <img className="mail-logo" src="assets/img/gmail.svg" title="mail" />
+            <div className="flex row space-between">
 
-            <form onChange={handleChange} className="search-bar">
-                <i className="icon outlined search"></i>
-                <input onChange={handleChange} value={txt} id='txt' name='txt' type='text' placeholder="Search mail" />
-            </form>
+                <img className="mail-logo" src="assets/img/gmail.svg" title="mail" />
+                <form onChange={handleChange} className="search-bar">
+                    <i className="icon outlined search"></i>
+                    <input onChange={handleChange} value={txt} id='txt' name='txt' type='text' placeholder="Search mail" />
+                </form>
 
+            </div>
         </section>
 
     )
@@ -74,7 +76,7 @@ export function MailSort({ defaultFilter, onSetFilterBy }) {
 
     return (
         <section className="mail-filter">
-            <form className="flex row">
+            <form className="">
 
                 <select id="isRead" name="isRead" onChange={handleChange}>
                     <option value="">All mails</option>

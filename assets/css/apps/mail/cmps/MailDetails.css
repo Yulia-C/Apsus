@@ -1,6 +1,5 @@
 .mail-details-content {
-    height: 100vh;
-    font-size: 1.3rem;
+    font-size: clamp(.825rem, 2vw, 1.5rem);
 
     >p {
         padding-block: .3em;
@@ -16,7 +15,7 @@ p.mail-body-content {
     border-bottom: 1px solid var(--border-color);
 
     .icon::before {
-        font-size: 2rem;
+        font-size: clamp(1rem, 4vw, 2rem);
     }
 }
 
@@ -27,6 +26,5 @@ p.mail-body-content {
 p.mail-subject-content {
     font-family: 'lato', Arial, Helvetica, sans-serif;
     font-weight: 700;
-    font-size: 1.5rem;
     border-bottom: 1px solid var(--border-color);
 }

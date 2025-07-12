@@ -17,7 +17,6 @@
 @import './cmps/AppHeader.css';
 @import './cmps/AppFooter.css';
 
-
 /* Keep */
 @import './apps/note/NoteIndex.css';
 
@@ -41,7 +40,5 @@
 @import './apps/note/SideBar.css';
 
 
-
-
-
 /* MQ */
+@import './setup/mq.css'

@@ -1,25 +1,70 @@
-.mail-list {
-    width: 100%;
-    border-spacing: 0;
-    background-color: white;
+.mail-list-container {
+    display: grid;
+    grid-area: main;
+    grid-template-columns: subgrid;
+    grid-auto-rows: auto;
+    border-collapse: collapse;
 }
 
-table tr>td{
-    max-height: 35px;
+.mail-list {
+    display: contents;
+}
+
+.mail-list tr {
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    grid-template-rows: 20px 10px 10px 20px;
+    grid-template-areas:
+        "from date"
+        "sub ."
+        "sub icon2"
+        "body icon2";
+    align-self: center;
+}
+
+td.icon-cell {
+    grid-area: icon;
+    display: none;
+}
+
+td.icon-cell2 {
+    grid-area: icon2;
+    justify-self: end;
+}
+
+td.mail-from {
+    grid-area: from;
+}
+
+td.mail-subject {
+    grid-area: sub;
+}
+
+td.mail-body {
+    grid-area: body;
 }
 
 td.mail-date,
 td.mail-actions {
-    max-height: 35px;
-    min-width: 90px;
+    grid-area: date;
+    align-self: center;
+    justify-self: end;
+    padding: .5em;
 }
 
-td.mail-form,
-td.mail-subject {
-    width: min-content;
+
+.mail-list td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-content: center;
 }
 
-.empty-div{
+.empty-div {
+    display: grid;
+    place-content: center;
+    width: 100%;
+    height: 100%;
     font-family: roboto-light;
     text-align: center;
 }
