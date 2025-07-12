@@ -9,6 +9,10 @@ export function CreateContainer() {
     const inputRef1 = useRef(null);
     const inputRef2 = useRef(null);
 
+    useEffect(() => {
+
+    }, [createMode]);
+
     function onHandleCreateMode(event) {
         const currMode = event.target.id;
         if (currMode === createMode) return;
