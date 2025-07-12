@@ -1,0 +1,66 @@
+/* Mobile */
+
+@media(max-width:350px) {
+
+    .mail-filter select,
+    label.sentAt {
+        display: flex;
+        flex-direction: row;
+    }
+
+.mail-logo,
+    .note-logo {
+        width: 2.5rem;
+    }
+}
+
+/* Desktop */
+@media (min-width: 750px) {
+    .home-container>.box-container {
+        display: flex;
+        justify-items: space-between;
+        flex-direction: row;
+    }
+
+    .mail-list-container {
+        grid-auto-rows: 35px;
+        height: fit-content;
+    }
+
+    .mail-list tr {
+        display: grid;
+        grid-template-columns: 30px 30px 1.5fr 1fr 5.5fr 100px;
+        grid-template-rows: 35px;
+        grid-template-areas:
+            "icon icon2 from sub body date";
+        max-height: 35px;
+        height: 35px;
+        align-self: center;
+    }
+
+    td.icon-cell {
+        grid-area: icon;
+        display: inline-block;
+    }
+
+    td.icon-cell2 {
+        grid-area: icon2;
+    }
+
+    td.mail-from {
+        grid-area: from;
+    }
+
+    td.mail-subject {
+        grid-area: sub;
+    }
+
+    td.mail-body {
+        grid-area: body;
+    }
+
+    td.mail-date,
+    td.mail-actions {
+        grid-area: date;
+    }
+}

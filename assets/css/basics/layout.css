@@ -16,39 +16,38 @@
 }
 
 /* Mail layout */
-@media (min-width: 750px) {
-
-    .mail-index {
-        position: relative;
-        display: grid;
-        grid-template-columns: .05fr 1fr;
-        grid-template-rows: 70px 50px 1fr;
-        grid-template-areas:
-            "m-header m-header"
-            "aside mail-filter"
-            "aside main";
-        row-gap: .3rem;
-    }
-
-    .m-header {
-        grid-area: m-header;
-    }
-
-    .mail-filter {
-        grid-area: mail-filter;
-        display: grid;
-    }
-
-    .mail-menu.aside {
-        grid-area: aside;
-    }
-
-    .main {
-        grid-area: main;
-    }
+.mail-index {
+    position: relative;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 70px 50px 1fr;
+    grid-template-areas:
+        "m-header m-header"
+        "aside mail-filter"
+        "aside main";
+    row-gap: .3rem;
+    transition: grid-template-columns 0.3s ease
 }
 
+.m-header {
+    grid-area: m-header;
+}
 
+.mail-filter {
+    grid-area: mail-filter;
+}
+
+.mail-menu.aside {
+    grid-area: aside;
+}
+
+.mail-list-container.main,
+.mail-details.main {
+    grid-area: main;
+    margin-inline-start: 1em;
+    min-height: 409px;
+    margin-block-end: auto;
+}
 
 /* Note layout */
 .note-index {
