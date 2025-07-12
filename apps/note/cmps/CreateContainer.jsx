@@ -1,4 +1,6 @@
 
+import { noteService } from "../services/note.service.js";
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, Fragment, useEffect, useRef } = React;
 
