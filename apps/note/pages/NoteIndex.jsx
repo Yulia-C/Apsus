@@ -48,11 +48,11 @@ export function NoteIndex() {
 
 
     return (
-        <section className="note-index">
+        <section className="note-index" >
             <button title="Menu" className="fa burger-icon" onClick={toggleSideBar}></button>
             <input className="search-input" placeholder="Search" type="text" />
 
-            <CreateContainer />
+            <CreateContainer loadNotes={loadNotes}/>
             <NoteList
                 notes={notes}
                 onRemoveNote={onRemoveNote}
