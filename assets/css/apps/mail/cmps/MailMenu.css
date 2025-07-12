@@ -1,47 +1,8 @@
-.mail-menu {
-    background-color: var(--main-bg-color);
-    width: 55px;
-    transition: width 300ms ease-in-out;
-    overflow: hidden;
-    z-index: 1;
-
-    >i {
-        padding: .2em;
-        margin-block: .2em;
-    }
-}
-
-.mail-menu:hover {
-    position: fixed;
-    height: 100vh;
-    width: 200px;
-    z-index: 10;
-
-    button span {
-        opacity: 1;
-        transition: opacity 500ms ease-in-out;
-    }
-
-    >.compose {
-        background-color: var(--compose-mail-bg-color);
-        border-radius: 15px;
-    }
-}
-
-.mail-menu span {
+.mail-menu button>span {
     margin-inline-start: 1.5rem;
     text-transform: capitalize;
     color: var(--icon-color);
     opacity: 0;
-}
-
-.mail-menu.open {
-    width: 200px;
-}
-
-.mail-menu.open span {
-    opacity: 1;
-    transition: opacity 500ms ease-in-out;
 }
 
 .mail-menu .menu-btn {
@@ -56,8 +17,50 @@
     font-family: roboto-bold;
 }
 
-.mail-menu .menu-btn:hover {
+.mail-menu .menu-btn:hover:not(.compose),
+.mail-menu .menu-btn.active {
     background-color: var(--hover-color);
+}
+
+.mail-menu.aside.closed {
+    position: absolute;
+    width: 50px;
+    background-color: var(--main-bg-color);
+    width: 50px;
+    transition: width 300ms ease-in-out;
+    height: 100vh;
+
+    >.menu-btn.active {
+        background-color: transparent;
+    }
+}
+
+
+.mail-menu.closed:hover {
+    width: 200px;
+    transition: width 300ms ease-in-out;
+
+    button,
+    span {
+        opacity: 1;
+        transition: opacity 500ms ease-in-out;
+    }
+
+    >.menu-btn.active {
+        background-color: var(--hover-color);
+    }
+}
+
+.mail-menu.aside.open- {
+    height: 100vh;
+    width: 200px;
+    transition: width 300ms ease-in-out;
+
+    >button,
+    span {
+        opacity: 1;
+        transition: opacity 500ms ease-in-out;
+    }
 }
 
 i.compose.active {
@@ -66,7 +69,7 @@ i.compose.active {
     padding: .2em;
 }
 
-.mail-menu.open .compose {
+.mail-menu .compose {
     background-color: var(--compose-mail-bg-color);
     border-radius: 15px;
 }

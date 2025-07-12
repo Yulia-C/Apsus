@@ -35,7 +35,7 @@ export function MailDetails({ onMoveToTrash, onReply, onToggleRead }) {
 
     return (
 
-        <section className="mail-details">
+        <section className="mail-details main">
             <section className="flex row">
                 <section>
 

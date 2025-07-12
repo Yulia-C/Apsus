@@ -1,4 +1,5 @@
 const { Route, Routes } = ReactRouterDOM
+const { Fragment } = React
 const Router = ReactRouterDOM.HashRouter
 
 import { AppHeader } from './cmps/AppHeader.jsx'
@@ -13,7 +14,7 @@ export function RootCmp() {
     return <Router>
         <section className="root-cmp">
             <AppHeader />
-            <div className="routes-wrapper">
+            <Fragment>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
@@ -21,7 +22,7 @@ export function RootCmp() {
                     <Route path="/mail/:mailId" element={<MailIndex />} />
                     <Route path="/note" element={<NoteIndex />} />
                 </Routes>
-            </div>
+            </Fragment>
             <AppFooter />
             <UserMsg />
         </section>
