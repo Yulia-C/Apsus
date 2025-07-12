@@ -17,7 +17,22 @@ export function CreateContainer() {
         }
 
         event.target.classList.add('active');
-        setCreateMode(currMode);
+    function onSaveNote(ev) {
+        ev.preventDefault()
+        noteService.save(noteToEdit)
+            .then(() => {
+                loadNotes()
+                showSuccessMsg('Note saved successfully')
+            })
+            .catch(err => {
+                console.log(err);
+                showErrorMsg('Cannot save note!')
+            })
+            .finally(() => {
+
+                inputRef1.current.value = '';
+                inputRef2.current.value = '';
+            })
 
 
     }
