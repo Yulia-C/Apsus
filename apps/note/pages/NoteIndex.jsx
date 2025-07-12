@@ -9,14 +9,14 @@ const { useState, useEffect } = React;
 
 export function NoteIndex() {
 
-    const [notes, setNotes] = useState()
+    const [notes, setNotes] = useState(null)
     // const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
 
 
     useEffect(() => {
         loadNotes()
         
-    }, [])
+    }, [setNotes])
 
     function loadNotes() {
         noteService.query()
