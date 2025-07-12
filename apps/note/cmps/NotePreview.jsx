@@ -40,7 +40,7 @@ function NoteTxt({ note, onRemoveNote }) {
 function NoteImg({ note, onRemoveNote }) {
 
     return (
-        <div className="note-txt card" >
+        <div className="note-img card" >
             <h3 className="img-title">{note.info.title}</h3>
             <img src={note.info.url} />
             <CardBtnsBar
