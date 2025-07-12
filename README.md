@@ -3,7 +3,21 @@
 APSUS is a personal productivity web app combining an email client and a note-taking tool. 
 Built with React, it helps you stay organized, focused, and connected—all within a single platform.
 
-## Features
+## Usage
+
+- **Home Page:**  
+  Welcome page with quick navigation to Mail and Note apps.
+
+- **Mail App:**  
+  View, filter, and manage your emails.
+
+- **Note App:**  
+  Create and organize your notes.
+
+- **About Page:**  
+  Learn more about the app.
+
+  ## Features
 
 ### Mail App
 - **Email Preview:** See summaries of your emails in a clean table view.
@@ -25,20 +39,6 @@ Built with React, it helps you stay organized, focused, and connected—all with
 - **Routing:** Navigate between Home, About, Mail, and Note apps.
 - **User Messages:** Feedback for user actions (success, error, etc.).
 
-## Usage
-
-- **Home Page:**  
-  Welcome page with quick navigation to Mail and Note apps.
-
-- **Mail App:**  
-  View, filter, and manage your emails.
-
-- **Note App:**  
-  Create and organize your notes.
-
-- **About Page:**  
-  Learn more about the app.
-
 ## Customization
 
 - **Demo Data:**  
@@ -47,10 +47,6 @@ Built with React, it helps you stay organized, focused, and connected—all with
 - **Styling:**  
   Styles are located in `assets/css/`. You can customize the look as desired.
 
-## License
-
-This project is for educational purposes.
-
----
-
-*Built with ❤️ for the Coding Academy Sprint Project*
+## Authors
+**Yulia Chernyak**
+**Andrey Yakerson**
