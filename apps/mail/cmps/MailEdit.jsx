@@ -19,6 +19,7 @@ export function MailEdit({ isModalOpen, onCloseModal, mailId }) {
             .then(mail => {
 
                 const replyMail = {
+                    from:mail.to,
                     to: mail.from,
                     subject: `Re: ${mail.subject}`,
                     body: `\n\n\n\n------------------\n${mail.body}`,
@@ -36,8 +37,8 @@ export function MailEdit({ isModalOpen, onCloseModal, mailId }) {
         const timedMail = {
             ...mailWithoutId,
             sentAt: Date.now(),
-            status: ['sent'],
-            isRead: null,
+            status: 'sent',
+            isRead: true,
         }
 
         mailService.save(timedMail)
