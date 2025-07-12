@@ -63,7 +63,15 @@ export function CreateContainer() {
 
     return (
         <section className="create-container">
-            <DynamicCreateInput createMode={createMode} />
+            <form action="submit" className="create-form" onSubmit={onSaveNote}>
+                <DynamicCreateInput
+                    createMode={createMode}
+                    handleChange={handleChange}
+                    inputRef1={inputRef1}
+                    inputRef2={inputRef2}
+                />
+                <button type="submit" style={{ display: 'none' }}></button>
+            </form>
 
             <div className="create-icons">
                 <button id="NoteTxt" title="Text note" className="fa txt-icon active" onClick={onHandleCreateMode}></button>
