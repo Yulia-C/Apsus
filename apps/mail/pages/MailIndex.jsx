@@ -19,7 +19,6 @@ export function MailIndex() {
 
     const { mailId } = useParams()
 
-
     const truthyFilter = getTruthyValues(filterBy)
 
     useEffect(() => {
@@ -66,7 +65,14 @@ export function MailIndex() {
     }
 
     function onMoveToTrash(mailId) {
-        console.log('onMoveToTrash', mails);
+        mailService.get(mailId).then(mail => {
+            if (mail.status === 'trash')
+                mailService.remove(mailId).then(() => {
+                    showSuccessMsg('Mail deleted successfully')
+                    setMails(mails => mails.filter(mail => mail.id !== mailId))
+                })
+        }).catch(err => showErrorMsg('Had a problem deleting mail...'))
+
         mailService.moveToTrash(mailId)
             .then(mail => mailService.save(mail))
             .then(() => {
