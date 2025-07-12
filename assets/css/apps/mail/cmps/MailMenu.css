@@ -25,25 +25,29 @@
 .mail-menu.aside.closed {
     position: absolute;
     width: 50px;
+    height: 100%;
     background-color: var(--main-bg-color);
-    width: 50px;
     transition: width 300ms ease-in-out;
-    height: 100vh;
 
     >.menu-btn.active {
         background-color: transparent;
     }
 }
 
-
 .mail-menu.closed:hover {
     width: 200px;
     transition: width 300ms ease-in-out;
+    box-shadow: 9px -3px 20px 0px var(--hover-color);
 
     button,
     span {
         opacity: 1;
         transition: opacity 500ms ease-in-out;
+        margin-inline-end: 1em;
+
+        >span.flex {
+            width: 100%;
+        }
     }
 
     >.menu-btn.active {
@@ -52,14 +56,20 @@
 }
 
 .mail-menu.aside.open- {
-    height: 100vh;
+    height: 100%;
     width: 200px;
     transition: width 300ms ease-in-out;
+    box-shadow: 9px -3px 20px 0px var(--hover-color);
 
     >button,
     span {
         opacity: 1;
         transition: opacity 500ms ease-in-out;
+        margin-inline-end: 1em;
+
+        >span.flex {
+            width: 100%;
+        }
     }
 }
 
