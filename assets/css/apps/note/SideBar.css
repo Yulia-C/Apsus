@@ -1,5 +1,8 @@
 
 .side-bar {
+    position: fixed;
+    top: 150px;
+    padding-block: 10px;
     display: flex;
     flex-direction: column;
     align-items: start;

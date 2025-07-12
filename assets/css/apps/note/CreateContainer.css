@@ -5,7 +5,7 @@
     justify-content: space-between;
 
     width: 50%;
-    min-width: 270px;
+    min-width: 250px;
     margin-inline: 1rem;
     padding: 10px;
     border: none;
@@ -27,7 +27,7 @@
     border: none;
     font-size: inherit;
     outline: none;
-    width: 90%;
+    width: 100%;
     background-color: rgb(241, 203, 157);
 }
 
@@ -53,4 +53,15 @@
 .fa.active {
     opacity: 1;
     scale: 1.1;
+}
+
+.note-textarea {
+    max-width: 90%;
+    height: 50px;
+    border: solid 1px;
+    border-radius: .5em;
+    padding: 10px;
+    outline: none;
+    resize: none;
+    background-color: rgb(241, 203, 157);
 }

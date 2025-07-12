@@ -1,14 +1,25 @@
 
+import { noteService } from "../services/note.service.js";
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
+const { useState, Fragment, useEffect, useRef } = React;
 
-const { useState } = React;
+export function CreateContainer({ loadNotes }) {
 
-export function CreateContainer() {
+    const [createMode, setCreateMode] = useState('NoteTxt');
+    const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote(createMode));
 
-    const [createMode, setCreateMode] = useState('txt');
+    const inputRef1 = useRef(null);
+    const inputRef2 = useRef(null);
+
+    useEffect(() => {
+
+    }, [createMode]);
 
     function onHandleCreateMode(event) {
         const currMode = event.target.id;
+        // console.log(currMode);
+
         if (currMode === createMode) return;
 
         const activeElement = document.querySelector('.create-icons .active');
@@ -17,21 +28,90 @@ export function CreateContainer() {
         }
 
         event.target.classList.add('active');
-        setCreateMode(currMode);
+        setCreateMode(currMode)
+        setNoteToEdit(noteService.getEmptyNote(currMode));
+    }
 
+    function onSaveNote(ev) {
+        ev.preventDefault()
+        noteService.save(noteToEdit)
+            .then(() => {
+                loadNotes()
+                showSuccessMsg('Note saved successfully')
+            })
+            .catch(err => {
+                console.log(err);
+                showErrorMsg('Cannot save note!')
+            })
+            .finally(() => {
+
+                inputRef1.current.value = '';
+                inputRef2.current.value = '';
+            })
+
+
+    }
+
+    function handleChange({ target }) {
+        const field = target.name
+        let value = target.value
+        switch (target.type) {
+            case 'number':
+            case 'range':
+                value = +value
+                break;
+
+            case 'checkbox':
+                value = target.checked
+                break
+        }
+
+        if (field === 'list') {
+            const todos = value.split(',').map(txt => ({ txt: txt.trim(), doneAt: null }));
+            setNoteToEdit(prevNote => ({
+                ...prevNote,
+                info: {
+                    ...prevNote.info,
+                    todos
+                }
+            }))
+            console.log('yes');
+            
+            return;
+        }
+
+
+        setNoteToEdit(prevNote => ({
+            ...prevNote,
+             type: createMode,
+              info: {
+                ...prevNote.info,
+                [field]: value,
+            },
+            todos: {...prevNote.todos, txt: value, doneAt: null }
+        }))
+        console.log('noteToEdit:', noteToEdit);
 
     }
 
 
     return (
         <section className="create-container">
-            <DynamicCreateInput createMode={createMode} />
+            <form action="submit" className="create-form" onSubmit={onSaveNote}>
+                <DynamicCreateInput
+                    createMode={createMode}
+                    handleChange={handleChange}
+                    inputRef1={inputRef1}
+                    inputRef2={inputRef2}
+                />
+                <button type="submit" style={{ display: 'none' }}></button>
+            </form>
 
             <div className="create-icons">
-                <button id="txt" title="Text note" className="fa txt-icon active" onClick={onHandleCreateMode}></button>
-                <button id="img" title="Image note" className="fa img-icon" onClick={onHandleCreateMode}></button>
-                <button id="film" title="Video note" className="fa film-icon" onClick={onHandleCreateMode}></button>
-                <button id="list" title="Todos note" className="fa list-icon" onClick={onHandleCreateMode}></button>
+                <button id="NoteTxt" title="Text note" className="fa txt-icon active" onClick={onHandleCreateMode}></button>
+                <button id="NoteImg" title="Image note" className="fa img-icon" onClick={onHandleCreateMode}></button>
+                <button id="NoteVideo" title="Video note" className="fa film-icon" onClick={onHandleCreateMode}></button>
+                <button id="NoteTodos" title="Todos note" className="fa list-icon" onClick={onHandleCreateMode}></button>
             </div>
 
         </section>
@@ -39,48 +119,65 @@ export function CreateContainer() {
 
 }
 
-function DynamicCreateInput({ createMode }) {
+function DynamicCreateInput({ createMode, handleChange, inputRef1, inputRef2 }) {
     switch (createMode) {
-        case 'txt':
-            return <TxtInput createMode={createMode} />;
-        case 'img':
-            return <ImgInput createMode={createMode} />;
-        case 'list':
-            return <TodosInput createMode={createMode} />;
-        case 'film':
-            return <VideoInput createMode={createMode} />;
+        case 'NoteTxt':
+            return <TxtInput
+                handleChange={handleChange}
+                inputRef1={inputRef1}
+                inputRef2={inputRef2}
+            />;
+        case 'NoteImg':
+            return <ImgInput
+                handleChange={handleChange}
+                inputRef1={inputRef1}
+                inputRef2={inputRef2}
+            />;
+        case 'NoteTodos':
+            return <TodosInput
+                handleChange={handleChange}
+                inputRef1={inputRef1}
+                inputRef2={inputRef2}
+            />;
+        case 'NoteVideo':
+            return <VideoInput
+                handleChange={handleChange}
+                inputRef1={inputRef1}
+                inputRef2={inputRef2}
+            />;
     }
 }
 
-function TxtInput({ createMode }) {
+function TxtInput({ handleChange, inputRef1, inputRef2 }) {
+
     return (
-        <form action="submit" className="create-form">
-            <input type="text" name="title-input" placeholder="Title..." />
-            <input type="text" name="note-input" placeholder="Note..." onClick={console.log(createMode)} />
-        </form>
+        <Fragment>
+            <input ref={inputRef1} type="text" name="title" placeholder="Title..." onChange={handleChange} />
+            <input ref={inputRef2} type="text" name="txt" placeholder="Note..." onChange={handleChange} />
+        </Fragment>
     )
 }
-function ImgInput({ createMode }) {
+function ImgInput({ handleChange, inputRef1, inputRef2 }) {
     return (
-        <form action="submit" className="create-form">
-            <input type="text" name="title-input" placeholder="Title..." />
-            <input type="text" name="img-input" placeholder="Image URL..." onClick={console.log(createMode)} />
-        </form>
+        <Fragment>
+            <input ref={inputRef1} type="text" name="title" placeholder="Title..." onChange={handleChange} />
+            <input ref={inputRef2} type="text" name="url" placeholder="Image URL..." onChange={handleChange} />
+        </Fragment>
     );
 }
-function TodosInput({ createMode }) {
+function TodosInput({ handleChange, inputRef1, inputRef2 }) {
     return (
-        <form action="submit" className="create-form">
-            <input type="text" name="title-input" placeholder="Title..." />
-            <input type="text" name="todos-input" placeholder="Todos..." onClick={console.log(createMode)} />
-        </form>
+        <Fragment>
+            <input ref={inputRef1} type="text" name="title" placeholder="Title..." onChange={handleChange} />
+            <input ref={inputRef2} type="text" name="list" placeholder="Todos...(by commas)" onChange={handleChange} />
+        </Fragment>
     );
 }
-function VideoInput({ createMode }) {
+function VideoInput({ handleChange, inputRef1, inputRef2 }) {
     return (
-        <form action="submit" className="create-form">
-            <input type="text" name="title-input" placeholder="Title..." />
-            <input type="text" name="video-input" placeholder="Video URL..." onClick={console.log(createMode)} />
-        </form>
+        <Fragment>
+            <input ref={inputRef1} type="text" name="title" placeholder="Title..." onChange={handleChange} />
+            <input ref={inputRef2} type="text" name="url" placeholder="Video URL..." onChange={handleChange} />
+        </Fragment>
     );
 }

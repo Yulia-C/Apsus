@@ -9,14 +9,14 @@ const { useState, useEffect } = React;
 
 export function NoteIndex() {
 
-    const [notes, setNotes] = useState()
+    const [notes, setNotes] = useState(null)
     // const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
 
 
     useEffect(() => {
         loadNotes()
         
-    }, [])
+    }, [setNotes])
 
     function loadNotes() {
         noteService.query()
@@ -48,11 +48,11 @@ export function NoteIndex() {
 
 
     return (
-        <section className="note-index">
+        <section className="note-index" >
             <button title="Menu" className="fa burger-icon" onClick={toggleSideBar}></button>
             <input className="search-input" placeholder="Search" type="text" />
 
-            <CreateContainer />
+            <CreateContainer loadNotes={loadNotes}/>
             <NoteList
                 notes={notes}
                 onRemoveNote={onRemoveNote}
