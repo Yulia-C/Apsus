@@ -28,9 +28,9 @@ export function CreateContainer() {
             <DynamicCreateInput createMode={createMode} />
 
             <div className="create-icons">
-                <button id="txt" title="Text note" className="fa txt-icon active" onClick={onHandleCreateMode}></button>
-                <button id="img" title="Image note" className="fa img-icon" onClick={onHandleCreateMode}></button>
-                <button id="film" title="Video note" className="fa film-icon" onClick={onHandleCreateMode}></button>
+                <button id="NoteTxt" title="Text note" className="fa txt-icon active" onClick={onHandleCreateMode}></button>
+                <button id="NoteImg" title="Image note" className="fa img-icon" onClick={onHandleCreateMode}></button>
+                <button id="NoteVideo" title="Video note" className="fa film-icon" onClick={onHandleCreateMode}></button>
                 <button id="list" title="Todos note" className="fa list-icon" onClick={onHandleCreateMode}></button>
             </div>
 
@@ -47,8 +47,12 @@ function DynamicCreateInput({ createMode }) {
             return <ImgInput createMode={createMode} />;
         case 'list':
             return <TodosInput createMode={createMode} />;
-        case 'film':
-            return <VideoInput createMode={createMode} />;
+        case 'NoteVideo':
+            return <VideoInput
+                handleChange={handleChange}
+                inputRef1={inputRef1}
+                inputRef2={inputRef2}
+            />;
     }
 }
 
@@ -76,11 +80,11 @@ function TodosInput({ createMode }) {
         </form>
     );
 }
-function VideoInput({ createMode }) {
+function VideoInput({ handleChange, inputRef1, inputRef2 }) {
     return (
-        <form action="submit" className="create-form">
-            <input type="text" name="title-input" placeholder="Title..." />
-            <input type="text" name="video-input" placeholder="Video URL..." onClick={console.log(createMode)} />
-        </form>
+        <Fragment>
+            <input ref={inputRef1} type="text" name="title" placeholder="Title..." onChange={handleChange} />
+            <input ref={inputRef2} type="text" name="url" placeholder="Video URL..." onChange={handleChange} />
+        </Fragment>
     );
 }

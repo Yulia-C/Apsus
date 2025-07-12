@@ -20,6 +20,8 @@ function DynamicCard({ note, onRemoveNote }) {
             return <NoteImg note={note} onRemoveNote={onRemoveNote} />;
         case 'NoteTodos':
             return <NoteTodos note={note} onRemoveNote={onRemoveNote} />;
+        case 'NoteVideo':
+            return <NoteVideo note={note} onRemoveNote={onRemoveNote} />;
     }
 }
 
@@ -41,6 +43,27 @@ function NoteImg({ note, onRemoveNote }) {
         <div className="note-txt card" >
             <h3 className="img-title">{note.info.title}</h3>
             <img src={note.info.url} />
+            <CardBtnsBar
+                noteId={note.id}
+                onRemoveNote={onRemoveNote}
+            />
+        </div>
+
+    );
+}
+
+function NoteVideo({ note, onRemoveNote }) {
+
+    function getFormattedUrl(url) {
+        const videoUrl = url;
+        const newVideoUrl = url.replace('watch?v=', 'embed/');
+        return newVideoUrl;
+    }
+
+    return (
+        <div className="note-film card" >
+            <h3 className="film-title">{note.info.title}</h3>
+            <iframe className="video-frame" src={getFormattedUrl(note.info.url)} width="300" height="200"></iframe>
             <CardBtnsBar
                 noteId={note.id}
                 onRemoveNote={onRemoveNote}

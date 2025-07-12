@@ -55,6 +55,22 @@
     padding-block-end: 10px;
 }
 
+.card > p {
+    margin-block-start: 30px;
+    text-transform: capitalize;
+}
+
+.card > h3 {
+    text-transform: capitalize;
+}
+
+.video-frame {
+    border: none;
+    border-radius: .5em;
+    margin-block-start: 20px;
+    width: 100%;
+}
+
 
 
 
