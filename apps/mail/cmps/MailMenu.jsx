@@ -4,20 +4,15 @@ const { useState, useEffect } = React
 const { useParams, useSearchParams } = ReactRouterDOM
 
 export function MailMenu({ isMenuOpen, onOpenModal, defaultFilter, onSetFilterBy }) {
-    const [activeItem, setActiveItem] = useState()
+    const [activeItem, setActiveItem] = useState(null)
+
+    function onCategoryChange(newCategory) {
+        onSetFilterBy({ category: newCategory })
+    }
 
     useEffect(() => {
-        onSetFilterBy({ category: activeItem })
-        loadMailsByCtg()
-    }, [activeItem])
-
-    function loadMailsByCtg() {
-        mailService.getMailByCategory()
-            .then(mails => {
-                console.log('Mails in category', activeItem, ':', mails[activeItem] || [])
-            })
-            .catch(err => console.log('Error loading categories:', err))
-    }
+        onCategoryChange(activeItem)
+    }, [])
 
     const itemsMap = [
         { key: 'inbox' },
@@ -27,9 +22,8 @@ export function MailMenu({ isMenuOpen, onOpenModal, defaultFilter, onSetFilterBy
         { key: 'trash' },
     ]
 
-
     return (
-        <section className={`${isMenuOpen ? 'open' : ''} mail-menu aside flex column`}>
+        <section className={`${isMenuOpen ? 'open-' : 'closed'} mail-menu aside flex column`}>
 
             <button onClick={() => onOpenModal()} className="menu-btn compose">
                 <i title="compose" className="icon outlined compose active" />
@@ -40,11 +34,17 @@ export function MailMenu({ isMenuOpen, onOpenModal, defaultFilter, onSetFilterBy
                 const isActive = activeItem === item.key
 
                 return isActive ?
-                    (<button key={item.key} className="menu-btn">
-
-                        <img onClick={() => {
+                    (<button key={item.key} className="menu-btn active"
+                        onClick={() => {
+                            onCategoryChange(item.key)
                             setActiveItem(item.key)
                         }}
+                    >
+                        <img
+                            onClick={() => {
+                                onCategoryChange(item.key)
+                                setActiveItem(item.key)
+                            }}
                             title={item.key}
                             className={`m-${item.key} active`}
                             src={`assets/icons/m-${item.key}.svg`} />
@@ -52,21 +52,22 @@ export function MailMenu({ isMenuOpen, onOpenModal, defaultFilter, onSetFilterBy
                         <span className="item-name">{item.key}</span>
                         <span className="item-count"></span>
                     </button>)
-                    : (<button key={item.key} className="menu-btn">
+                    : (<button key={item.key} className="menu-btn"
+                        onClick={() => {
+                            onCategoryChange(item.key)
+                            setActiveItem(item.key)
+                        }}
+                    >
                         <i title={item.key}
                             className={`icon outlined ${item.key}`}
                             onClick={() => {
-                                setActiveItem(item.key)
+                                // onCategoryChange(item.key)
+                                // setActiveItem(item.key)
                             }} />
 
                         <span className="item-name">{item.key}</span>
                         <span className="item-count"></span></button>)
             })}
-            {/* <i title="inbox" className="icon outlined inbox" />
-            <i title="star" className="icon outlined star" />
-            <i title="sent" className="icon outlined sent" />
-            <i title="draft" className="icon outlined draft" />
-            <i title="delete" className="icon outlined delete" /> */}
         </section>
     )
 }

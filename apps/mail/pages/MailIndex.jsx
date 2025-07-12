@@ -29,8 +29,7 @@ export function MailIndex() {
 
     function loadMails() {
         mailService.query(filterBy)
-            .then(mails => setMails(mails))
-            // .then(mails=> setMails(mails =>mails.filter(mail=> mail.status === 'inbox')))
+            .then(setMails)
             .catch(err => console.log('err:', err))
     }
 
@@ -94,6 +93,8 @@ export function MailIndex() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     function handleMenuToggle(isMenuOpen) {
+        document.querySelector('.mail-index').classList.toggle('openn')
+
         setIsMenuOpen(prev => !prev)
     }
 
