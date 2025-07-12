@@ -1,10 +1,10 @@
 import { mailService } from "../services/mail.service.js"
-import { getTruthyValues } from "../../../services/util.service.js"
 const { useState, useEffect } = React
-const { useParams, useSearchParams } = ReactRouterDOM
 
 export function MailMenu({ isMenuOpen, onOpenModal, defaultFilter, onSetFilterBy }) {
-    const [activeItem, setActiveItem] = useState(null)
+    const [activeItem, setActiveItem] = useState('inbox')
+    const [categoryCounts, setCategoryCounts] = useState({})
+
 
     function onCategoryChange(newCategory) {
         onSetFilterBy({ category: newCategory })
@@ -12,6 +12,9 @@ export function MailMenu({ isMenuOpen, onOpenModal, defaultFilter, onSetFilterBy
 
     useEffect(() => {
         onCategoryChange(activeItem)
+        mailService.getCategoryCount()
+            .then(counts => setCategoryCounts(counts))
+            .catch(err => console.error('Failed to load category counts:', err))
     }, [])
 
     const itemsMap = [
@@ -32,6 +35,8 @@ export function MailMenu({ isMenuOpen, onOpenModal, defaultFilter, onSetFilterBy
 
             {itemsMap.map(item => {
                 const isActive = activeItem === item.key
+                const count = categoryCounts[item.key]
+
 
                 return isActive ?
                     (<button key={item.key} className="menu-btn active"
@@ -48,9 +53,10 @@ export function MailMenu({ isMenuOpen, onOpenModal, defaultFilter, onSetFilterBy
                             title={item.key}
                             className={`m-${item.key} active`}
                             src={`assets/icons/m-${item.key}.svg`} />
-
-                        <span className="item-name">{item.key}</span>
-                        <span className="item-count"></span>
+                        <span className="flex space-between">
+                            <span className="item-name">{item.key}</span>
+                            <span className="item-count">{count}</span>
+                        </span>
                     </button>)
                     : (<button key={item.key} className="menu-btn"
                         onClick={() => {
@@ -61,12 +67,14 @@ export function MailMenu({ isMenuOpen, onOpenModal, defaultFilter, onSetFilterBy
                         <i title={item.key}
                             className={`icon outlined ${item.key}`}
                             onClick={() => {
-                                // onCategoryChange(item.key)
-                                // setActiveItem(item.key)
+                                onCategoryChange(item.key)
+                                setActiveItem(item.key)
                             }} />
-
-                        <span className="item-name">{item.key}</span>
-                        <span className="item-count"></span></button>)
+                        <span className="flex space-between">
+                            <span className="item-name">{item.key}</span>
+                            <span className="item-count">{count}</span>
+                        </span>
+                    </button>)
             })}
         </section>
     )

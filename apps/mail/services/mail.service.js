@@ -5,7 +5,6 @@ import { makeId } from '../../../services/util.service.js'
 
 const MAIL_KEY = 'mailDB'
 _createMails()
-// console.log('mails:', mails)
 
 export const mailService = {
     query,
@@ -18,8 +17,7 @@ export const mailService = {
     getFilterFromSearchParams,
     moveToTrash,
     moveToDraft,
-    // getMailByCategory,
-
+    getCategoryCount
 }
 
 function query(filterBy = {}) {
@@ -100,7 +98,6 @@ function getEmptyMail() {
     return mail
 }
 
-
 function getDefaultFilter() {
     return {
         txt: '', isStarred: null, isRead: null, isChecked: null, sentAt: null,
@@ -120,6 +117,18 @@ function moveToDraft(mailId) {
         mail = { ...mail, status: 'draft' }
         return mail
     })
+}
+
+function getCategoryCount() {
+    return storageService.query(MAIL_KEY)
+        .then(mails => mails.reduce((acc, mail) => {
+            if (!mail.isRead) {
+                const category = mail.status || 'inbox'
+                acc[category] = (acc[category] || 0) + 1
+            }
+                return acc
+        }, {})
+        )
 }
 
 function getFilterFromSearchParams(searchParams) {
@@ -481,7 +490,6 @@ function _createMails() {
     return mails
 }
 
-
 function getFilterFromSearchParams(searchParams) {
     const txt = searchParams.get('txt') || ''
     // const minSpeed = searchParams.get('minSpeed') || ''
@@ -490,7 +498,6 @@ function getFilterFromSearchParams(searchParams) {
         txt,
     }
 }
-
 
 function _setNextPrevMailId(mail) {
     return query().then((mails) => {
