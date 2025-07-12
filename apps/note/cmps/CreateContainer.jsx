@@ -65,11 +65,30 @@ export function CreateContainer({ loadNotes }) {
                 value = target.checked
                 break
         }
+
+        if (field === 'list') {
+            const todos = value.split(',').map(txt => ({ txt: txt.trim(), doneAt: null }));
+            setNoteToEdit(prevNote => ({
+                ...prevNote,
+                info: {
+                    ...prevNote.info,
+                    todos
+                }
+            }))
+            console.log('yes');
+            
+            return;
+        }
+
+
         setNoteToEdit(prevNote => ({
-            ...prevNote, type: createMode, info: {
+            ...prevNote,
+             type: createMode,
+              info: {
                 ...prevNote.info,
                 [field]: value,
-            }
+            },
+            todos: {...prevNote.todos, txt: value, doneAt: null }
         }))
         console.log('noteToEdit:', noteToEdit);
 
@@ -92,7 +111,7 @@ export function CreateContainer({ loadNotes }) {
                 <button id="NoteTxt" title="Text note" className="fa txt-icon active" onClick={onHandleCreateMode}></button>
                 <button id="NoteImg" title="Image note" className="fa img-icon" onClick={onHandleCreateMode}></button>
                 <button id="NoteVideo" title="Video note" className="fa film-icon" onClick={onHandleCreateMode}></button>
-                <button id="list" title="Todos note" className="fa list-icon" onClick={onHandleCreateMode}></button>
+                <button id="NoteTodos" title="Todos note" className="fa list-icon" onClick={onHandleCreateMode}></button>
             </div>
 
         </section>
@@ -114,7 +133,7 @@ function DynamicCreateInput({ createMode, handleChange, inputRef1, inputRef2 }) 
                 inputRef1={inputRef1}
                 inputRef2={inputRef2}
             />;
-        case 'list':
+        case 'NoteTodos':
             return <TodosInput
                 handleChange={handleChange}
                 inputRef1={inputRef1}
@@ -133,7 +152,7 @@ function TxtInput({ handleChange, inputRef1, inputRef2 }) {
 
     return (
         <Fragment>
-            <input ref={inputRef1} type="txt" name="title" placeholder="Title..." onChange={handleChange} />
+            <input ref={inputRef1} type="text" name="title" placeholder="Title..." onChange={handleChange} />
             <input ref={inputRef2} type="text" name="txt" placeholder="Note..." onChange={handleChange} />
         </Fragment>
     )
@@ -150,7 +169,7 @@ function TodosInput({ handleChange, inputRef1, inputRef2 }) {
     return (
         <Fragment>
             <input ref={inputRef1} type="text" name="title" placeholder="Title..." onChange={handleChange} />
-            <input ref={inputRef2} type="text" name="todos.txt" placeholder="Todos..." onChange={handleChange} />
+            <input ref={inputRef2} type="text" name="list" placeholder="Todos..." onChange={handleChange} />
         </Fragment>
     );
 }

@@ -56,7 +56,6 @@ function NoteImg({ note, onRemoveNote }) {
 function NoteVideo({ note, onRemoveNote }) {
 
     function getFormattedUrl(url) {
-        const videoUrl = url;
         const newVideoUrl = url.replace('watch?v=', 'embed/');
         return newVideoUrl;
     }
@@ -75,20 +74,30 @@ function NoteVideo({ note, onRemoveNote }) {
 }
 
 function NoteTodos({ note, onRemoveNote }) {
+
+    const todos = note.info.todos
+
+    function toggleTodoDone(ev,todo) {
+        ev.target.classList.toggle('done')
+        todo.doneAt = Date.now()
+    }
+
+
     return (
         <div className="note-todos card" >
-            <h3>{note.info.title}</h3>
+            <h3 className="todos-title">{note.info.title}</h3>
+
             <ul>
-                {note.info.todos.map((todo, idx) => (
-                    <li key={idx} className={todo.doneAt ? 'done' : ''}>
-                        {todo.txt}
-                    </li>
-                ))}
+                {note.info.todos.map((todo,idx) => {
+                    return (
+                        <li key={idx} className="todo" onClick={() => toggleTodoDone(event,todo)}>{todo.txt}</li>
+                    )
+                })}
             </ul>
             <CardBtnsBar
                 noteId={note.id}
                 onRemoveNote={onRemoveNote}
             />
         </div>
-    );
+    )
 }
