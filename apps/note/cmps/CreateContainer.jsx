@@ -1,11 +1,13 @@
 
 
+const { useState, Fragment, useEffect, useRef } = React;
 
 const { useState } = React;
 
 export function CreateContainer() {
 
-    const [createMode, setCreateMode] = useState('txt');
+    const inputRef1 = useRef(null);
+    const inputRef2 = useRef(null);
 
     function onHandleCreateMode(event) {
         const currMode = event.target.id;
@@ -85,14 +87,26 @@ export function CreateContainer() {
 
 }
 
-function DynamicCreateInput({ createMode }) {
+function DynamicCreateInput({ createMode, handleChange, inputRef1, inputRef2 }) {
     switch (createMode) {
-        case 'txt':
-            return <TxtInput createMode={createMode} />;
-        case 'img':
-            return <ImgInput createMode={createMode} />;
+        case 'NoteTxt':
+            return <TxtInput
+                handleChange={handleChange}
+                inputRef1={inputRef1}
+                inputRef2={inputRef2}
+            />;
+        case 'NoteImg':
+            return <ImgInput
+                handleChange={handleChange}
+                inputRef1={inputRef1}
+                inputRef2={inputRef2}
+            />;
         case 'list':
-            return <TodosInput createMode={createMode} />;
+            return <TodosInput
+                handleChange={handleChange}
+                inputRef1={inputRef1}
+                inputRef2={inputRef2}
+            />;
         case 'NoteVideo':
             return <VideoInput
                 handleChange={handleChange}
@@ -124,7 +138,7 @@ function TodosInput({ handleChange, inputRef1, inputRef2 }) {
         <Fragment>
             <input ref={inputRef1} type="text" name="title" placeholder="Title..." onChange={handleChange} />
             <input ref={inputRef2} type="text" name="todos.txt" placeholder="Todos..." onChange={handleChange} />
-        </form>
+        </Fragment>
     );
 }
 function VideoInput({ handleChange, inputRef1, inputRef2 }) {
