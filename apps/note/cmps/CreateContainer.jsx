@@ -169,7 +169,7 @@ function TodosInput({ handleChange, inputRef1, inputRef2 }) {
     return (
         <Fragment>
             <input ref={inputRef1} type="text" name="title" placeholder="Title..." onChange={handleChange} />
-            <input ref={inputRef2} type="text" name="list" placeholder="Todos..." onChange={handleChange} />
+            <input ref={inputRef2} type="text" name="list" placeholder="Todos...(by commas)" onChange={handleChange} />
         </Fragment>
     );
 }
