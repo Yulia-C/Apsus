@@ -56,27 +56,28 @@ function DynamicCreateInput({ createMode }) {
     }
 }
 
-function TxtInput({ createMode }) {
+function TxtInput({ handleChange, inputRef1, inputRef2 }) {
+
     return (
-        <form action="submit" className="create-form">
-            <input type="text" name="title-input" placeholder="Title..." />
-            <input type="text" name="note-input" placeholder="Note..." onClick={console.log(createMode)} />
-        </form>
+        <Fragment>
+            <input ref={inputRef1} type="txt" name="title" placeholder="Title..." onChange={handleChange} />
+            <input ref={inputRef2} type="text" name="txt" placeholder="Note..." onChange={handleChange} />
+        </Fragment>
     )
 }
-function ImgInput({ createMode }) {
+function ImgInput({ handleChange, inputRef1, inputRef2 }) {
     return (
-        <form action="submit" className="create-form">
-            <input type="text" name="title-input" placeholder="Title..." />
-            <input type="text" name="img-input" placeholder="Image URL..." onClick={console.log(createMode)} />
-        </form>
+        <Fragment>
+            <input ref={inputRef1} type="text" name="title" placeholder="Title..." onChange={handleChange} />
+            <input ref={inputRef2} type="text" name="url" placeholder="Image URL..." onChange={handleChange} />
+        </Fragment>
     );
 }
-function TodosInput({ createMode }) {
+function TodosInput({ handleChange, inputRef1, inputRef2 }) {
     return (
-        <form action="submit" className="create-form">
-            <input type="text" name="title-input" placeholder="Title..." />
-            <input type="text" name="todos-input" placeholder="Todos..." onClick={console.log(createMode)} />
+        <Fragment>
+            <input ref={inputRef1} type="text" name="title" placeholder="Title..." onChange={handleChange} />
+            <input ref={inputRef2} type="text" name="todos.txt" placeholder="Todos..." onChange={handleChange} />
         </form>
     );
 }
