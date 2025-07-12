@@ -28,6 +28,7 @@ function DynamicCard({ note, onRemoveNote }) {
 function NoteTxt({ note, onRemoveNote }) {
     return (
         <div className="note-txt card" >
+            <h3>{note.info.title}</h3>
             <p>{note.info.txt}</p>
             <CardBtnsBar
                 noteId={note.id}
