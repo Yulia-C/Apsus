@@ -5,6 +5,7 @@
     justify-content: space-between;
 
     width: 50%;
+    min-width: 300px;
     margin-inline: 1rem;
     padding: 10px;
     border: none;
