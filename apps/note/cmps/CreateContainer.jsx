@@ -4,7 +4,8 @@ const { useState, Fragment, useEffect, useRef } = React;
 
 const { useState } = React;
 
-export function CreateContainer() {
+    const [createMode, setCreateMode] = useState('NoteTxt');
+    const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote(createMode));
 
     const inputRef1 = useRef(null);
     const inputRef2 = useRef(null);
