@@ -37,6 +37,29 @@ export function CreateContainer() {
 
     }
 
+    function handleChange({ target }) {
+        const field = target.name
+        let value = target.value
+        switch (target.type) {
+            case 'number':
+            case 'range':
+                value = +value
+                break;
+
+            case 'checkbox':
+                value = target.checked
+                break
+        }
+        setNoteToEdit(prevNote => ({
+            ...prevNote, type: createMode, info: {
+                ...prevNote.info,
+                [field]: value,
+            }
+        }))
+        console.log('noteToEdit:', noteToEdit);
+
+    }
+
 
     return (
         <section className="create-container">
