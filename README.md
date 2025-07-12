@@ -16,6 +16,21 @@ Built with React, it helps you stay organized, focused, and connected—all with
 
 - **About Page:**  
   Learn more about the app.
+
+## Usage
+
+- **Home Page:**  
+  Welcome page with quick navigation to Mail and Note apps.
+
+- **Mail App:**  
+  View, filter, and manage your emails.
+
+- **Note App:**  
+  Create and organize your notes.
+
+- **About Page:**  
+  Learn more about the app.
+ 
  ## Features
 
 ### Mail App
