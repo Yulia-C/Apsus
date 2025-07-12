@@ -2,7 +2,7 @@
 
 const { useState, Fragment, useEffect, useRef } = React;
 
-const { useState } = React;
+export function CreateContainer({ loadNotes }) {
 
     const [createMode, setCreateMode] = useState('NoteTxt');
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote(createMode));
@@ -16,6 +16,8 @@ const { useState } = React;
 
     function onHandleCreateMode(event) {
         const currMode = event.target.id;
+        // console.log(currMode);
+
         if (currMode === createMode) return;
 
         const activeElement = document.querySelector('.create-icons .active');
@@ -24,6 +26,10 @@ const { useState } = React;
         }
 
         event.target.classList.add('active');
+        setCreateMode(currMode)
+        setNoteToEdit(noteService.getEmptyNote(currMode));
+    }
+
     function onSaveNote(ev) {
         ev.preventDefault()
         noteService.save(noteToEdit)
