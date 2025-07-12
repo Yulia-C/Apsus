@@ -22,6 +22,14 @@ export function MailIndex() {
     const truthyFilter = getTruthyValues(filterBy)
 
     useEffect(() => {
+        const categoryFromUrl = searchParams.get('category')
+        if (categoryFromUrl !== filterBy.category) {
+            setFilterBy(prev => ({ ...prev, category: categoryFromUrl }))
+        }
+    }, [])
+
+    useEffect(() => {
+
         loadMails()
         setSearchParams(getTruthyValues(filterBy))
     }, [mailId, filterBy])
