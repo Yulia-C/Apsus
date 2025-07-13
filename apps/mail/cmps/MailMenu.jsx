@@ -1,21 +1,25 @@
 import { mailService } from "../services/mail.service.js"
 const { useState, useEffect } = React
+const { useParams, useNavigate, useSearchParams } = ReactRouterDOM
 
-export function MailMenu({ isMenuOpen, onOpenModal, defaultFilter, onSetFilterBy }) {
+export function MailMenu({ isMenuOpen, onOpenModal, defaultFilter, onSetFilterBy, categoryCounts }) {
     const [activeItem, setActiveItem] = useState('inbox')
-    const [categoryCounts, setCategoryCounts] = useState({})
+    const { mailId } = useParams()
+    const [searchParams, setSearchParams] = useSearchParams()
 
+    const navigate = useNavigate()
 
     function onCategoryChange(newCategory) {
         onSetFilterBy({ category: newCategory })
+        if (mailId) {
+            navigate(`/mail/?${searchParams.toString()}`)
+        }
     }
 
     useEffect(() => {
+        setSearchParams(searchParams)
         onCategoryChange(activeItem)
-        mailService.getCategoryCount()
-            .then(counts => setCategoryCounts(counts))
-            .catch(err => console.error('Failed to load category counts:', err))
-    }, [])
+    }, [mailId])
 
     const itemsMap = [
         { key: 'inbox' },

@@ -1,14 +1,17 @@
 import { mailService } from "../services/mail.service.js"
 import { getFullYear, getMonthName } from "../../../services/util.service.js"
-import { LongTxt } from "./LongTxt.jsx"
 const { useState, useEffect } = React
-const { useNavigate } = ReactRouterDOM
+const { useNavigate, useSearchParams } = ReactRouterDOM
 
 
 export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onToggleRead, onMoveToTrash }) {
     const navigate = useNavigate()
     const [isMailHovered, setIsMailHovered] = useState(true)
-
+    const [searchParams, setSearchParams] = useSearchParams()
+    
+    useEffect(() => {
+        setSearchParams(searchParams)
+    }, [])
 
     const handleMouseEnter = (mailId) => {
         setIsMailHovered(mailId)
@@ -34,9 +37,9 @@ export function MailList({ mails, onToggleCheckbox, onToggleStar, onReply, onTog
                             <img onClick={() => onToggleStar(mail.id)} className="starred" src="assets/icons/star.svg" />
                             : <i onClick={() => onToggleStar(mail.id)} className="icon outlined star" />}
                         </td>
-                        <td onClick={() => navigate(`/mail/${mail.id}`)} className="mail-from">{mail.from}</td>
-                        <td onClick={() => navigate(`/mail/${mail.id}`)} className="mail-subject">{mail.subject}</td>
-                        <td onClick={() => navigate(`/mail/${mail.id}`)} className="mail-body">
+                        <td onClick={() => navigate(`/mail/${mail.id}?${searchParams.toString()}`)} className="mail-from">{mail.from}</td>
+                        <td onClick={() => navigate(`/mail/${mail.id}?${searchParams.toString()}`)} className="mail-subject">{mail.subject}</td>
+                        <td onClick={() => navigate(`/mail/${mail.id}?${searchParams.toString()}`)} className="mail-body">
                             {mail.body}
                         </td>
 

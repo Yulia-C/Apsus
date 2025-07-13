@@ -36,8 +36,7 @@ export function MailDetails({ onMoveToTrash, onReply, onToggleRead }) {
     return (
 
         <section className="mail-details main">
-            <section className="flex row">
-                <section>
+                <section className="wrapper">
 
                     <div className="mail-d-actions flex space-between">
                         <div onClick={onBack}><i title="back" className="icon outlined arrow-back" /></div>
@@ -55,7 +54,6 @@ export function MailDetails({ onMoveToTrash, onReply, onToggleRead }) {
                         <p className="mail-to-content">To: {mail.to}</p>
                         <p className="mail-body-content">{mail.body}</p>
                     </div>
-                </section>
             </section>
         </section>
     )

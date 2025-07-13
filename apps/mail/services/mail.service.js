@@ -16,7 +16,6 @@ export const mailService = {
     getDefaultFilter,
     getFilterFromSearchParams,
     moveToTrash,
-    moveToDraft,
     getCategoryCount
 }
 
@@ -112,13 +111,6 @@ function moveToTrash(mailId) {
     })
 }
 
-function moveToDraft(mailId) {
-    return storageService.get(MAIL_KEY, mailId).then(mail => {
-        mail = { ...mail, status: 'draft' }
-        return mail
-    })
-}
-
 function getCategoryCount() {
     return storageService.query(MAIL_KEY)
         .then(mails => mails.reduce((acc, mail) => {
@@ -126,7 +118,7 @@ function getCategoryCount() {
                 const category = mail.status || 'inbox'
                 acc[category] = (acc[category] || 0) + 1
             }
-                return acc
+            return acc
         }, {})
         )
 }

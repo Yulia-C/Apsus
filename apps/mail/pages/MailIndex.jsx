@@ -9,18 +9,26 @@ import { MailEdit } from "../cmps/MailEdit.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect, Fragment } = React
-const { Link, useSearchParams, useParams } = ReactRouterDOM
+const { Link, useSearchParams, useParams, useNavigate } = ReactRouterDOM
 
 
 export function MailIndex() {
     const [mails, setMails] = useState([])
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const [searchParams, setSearchParams] = useSearchParams()
+    const [categoryCounts, setCategoryCounts] = useState({})
+    const navigate = useNavigate()
+
 
     const { mailId } = useParams()
 
     const truthyFilter = getTruthyValues(filterBy)
 
+    function updateCategoryCounts() {
+        mailService.getCategoryCount()
+            .then(categoryCounts => setCategoryCounts(categoryCounts))
+            .catch(err => console.error('Failed to load category counts', err))
+    }
     useEffect(() => {
         const categoryFromUrl = searchParams.get('category')
         if (categoryFromUrl !== filterBy.category) {
@@ -31,7 +39,9 @@ export function MailIndex() {
     useEffect(() => {
 
         loadMails()
+        updateCategoryCounts()
         setSearchParams(getTruthyValues(filterBy))
+
     }, [mailId, filterBy])
 
     function loadMails() {
@@ -64,12 +74,15 @@ export function MailIndex() {
                 if (mail.id === mailId) {
                     const updatedMail = { ...mail, isStarred: !mail.isStarred }
                     mailService.save(updatedMail)
+                    if (mail.isStarred && !mail.isRead) updateCategoryCounts()
+
                     return updatedMail
                 }
                 return mail
             })
             return upDatedMails
         })
+
     }
 
     function onMoveToTrash(mailId) {
@@ -88,6 +101,8 @@ export function MailIndex() {
                 setMails(mails => mails.filter(mail => mail.id !== mailId))
             })
             .catch(err => showErrorMsg('Had a problem trashing mail...'))
+        updateCategoryCounts()
+
     }
 
     function onToggleRead(mailId) {
@@ -102,6 +117,7 @@ export function MailIndex() {
             })
             return upDatedMails
         })
+        updateCategoryCounts()
     }
 
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -119,6 +135,7 @@ export function MailIndex() {
     function onReply(mailId) {
         setReplyMailId(mailId)
         openModal()
+        updateCategoryCounts()
     }
 
     useEffect(() => {
@@ -138,10 +155,23 @@ export function MailIndex() {
         <Fragment>
             <section className="mail-index container">
 
-                <MailMenu isMenuOpen={isMenuOpen} onOpenModal={openModal} defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
-                <MailEdit isModalOpen={isModalOpen} onCloseModal={closeModal} mailId={replyMailId} />
-                <MailFilter defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} onToggleMenu={() => handleMenuToggle(isMenuOpen)} />
-                <MailSort defaultFilter={filterBy} onSetFilterBy={onSetFilterBy} />
+                <MailMenu isMenuOpen={isMenuOpen}
+                    onOpenModal={openModal}
+                    defaultFilter={filterBy}
+                    onSetFilterBy={onSetFilterBy}
+                    categoryCounts={categoryCounts}
+                    updateCategoryCounts={updateCategoryCounts} />
+
+                <MailEdit isModalOpen={isModalOpen}
+                    onCloseModal={closeModal}
+                    mailId={replyMailId} />
+
+                <MailFilter defaultFilter={filterBy}
+                    onSetFilterBy={onSetFilterBy}
+                    onToggleMenu={() => handleMenuToggle(isMenuOpen)} />
+
+                <MailSort defaultFilter={filterBy}
+                    onSetFilterBy={onSetFilterBy} />
 
                 {mailId ? (
                     <MailDetails onReply={onReply}
