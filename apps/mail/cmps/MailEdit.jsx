@@ -7,7 +7,6 @@ export function MailEdit({ isModalOpen, onCloseModal, mailId }) {
     const [mailToEdit, setMailToEdit] = useState(mailService.getEmptyMail())
 
     useEffect(() => {
-        // if (isModalOpen)  setMailToEdit(mailService.getEmptyMail())
         if (mailId) {
             loadMailToEdit()
             console.log('mailId:', mailId)
@@ -19,7 +18,7 @@ export function MailEdit({ isModalOpen, onCloseModal, mailId }) {
             .then(mail => {
 
                 const replyMail = {
-                    from:mail.to,
+                    from: mail.to,
                     to: mail.from,
                     subject: `Re: ${mail.subject}`,
                     body: `\n\n\n\n------------------\n${mail.body}`,
@@ -58,13 +57,43 @@ export function MailEdit({ isModalOpen, onCloseModal, mailId }) {
         if (value === 'to')
             if (target.type === 'checkbox') value = target.checked
             else if (target.type === 'range') value = +value
-
-
-
+        setCurrentDraft(prevMail => ({ ...prevMail, [field]: value }))
         setMailToEdit(prevMail => ({ ...prevMail, [field]: value }))
     }
 
-    const { to, from, subject, body } = mailToEdit
+    const [currentDraft, setCurrentDraft] = useState(null)
+
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            if (currentDraft)
+                onSaveToDraft(currentDraft)
+        }, 3000)
+
+        return () => clearTimeout(timeOut)
+
+    }, [currentDraft])
+
+    function onSaveToDraft(draftMail) {
+        const mailToDraft = {
+            ...draftMail,
+            status: 'draft',
+            from: draftMail.from,
+            createdAt: Date.now(),
+            sentAt: Date.now(),
+            isRead: false,
+        }
+
+        mailService.save(mailToDraft)
+            .then(() => {
+                showSuccessMsg('Mail saved as draft')
+            })
+            .catch(err => {
+                console.error('Draft save failed:', err)
+                showErrorMsg('Could not save draft...')
+            })
+    }
+
+    const { to, subject, body } = mailToEdit
     if (!isModalOpen) return null
 
     return (
@@ -74,7 +103,11 @@ export function MailEdit({ isModalOpen, onCloseModal, mailId }) {
                 <div className="compose-header flex space-between align-center">
                     <p>New Message</p>
                 </div>
-                <button onClick={onCloseModal} type="button" className="close-btn">X</button>
+                <button onClick={() => {
+                    onCloseModal()
+                    onSaveToDraft(currentDraft)
+                }}
+                    type="button" className="close-btn">X</button>
                 <label className="label-to" htmlFor="to">To:</label>
                 <input onChange={handleChange} className="input-to" value={to} type="email" id="to" name="to" pattern='/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i' required />
                 <label className="label-sub" htmlFor="subject">Subject</label>
