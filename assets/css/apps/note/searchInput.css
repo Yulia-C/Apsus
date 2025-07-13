@@ -1,3 +1,7 @@
+form.filter-form {
+    padding: 1rem;
+    height: 30px;
+}
 
 .search-input {
     border: none;

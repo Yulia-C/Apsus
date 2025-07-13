@@ -3,7 +3,6 @@ import { CardBtnsBar } from 'CardBtnsBar.jsx';
 const { Fragment } = React;
 
 export function NotePreview({ note, onRemoveNote }) {
-
     return (
         <DynamicCard
             note={note}

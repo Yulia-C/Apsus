@@ -2,6 +2,7 @@
 import { CreateContainer } from "../cmps/CreateContainer.jsx";
 import { NoteList } from "../cmps/NoteList.jsx";
 import { SideBar } from "../cmps/SideBar.jsx";
+import { NotesFilter } from "../cmps/NotesFilter.jsx"
 import { noteService } from "../services/note.service.js";
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 const { useState, useEffect } = React;
@@ -9,19 +10,24 @@ const { useState, useEffect } = React;
 
 export function NoteIndex() {
 
-    const [notes, setNotes] = useState(null)
-    // const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
+    const [notes, setNotes] = useState([])
+    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
 
 
     useEffect(() => {
         loadNotes()
-        
-    }, [setNotes])
+    }, [filterBy])
 
     function loadNotes() {
-        noteService.query()
-            .then(notes => setNotes(notes))
+        noteService.query(filterBy)
+            .then(notes => {
+                setNotes(notes)
+            })
             .catch(err => console.log('err:', err))
+    }
+
+    function onSetFilterBy(filterBy) {
+        setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
     function toggleSideBar() {
@@ -35,33 +41,29 @@ export function NoteIndex() {
 
     function onRemoveNote(noteId) {
         console.log('noteId:', noteId);
-        
-
-        noteService.remove(noteId)
+        noteService.getNoteToTrash(noteId)
+            .then(note => noteService.save(note))
             .then(() => {
-                showSuccessMsg('Note removed successfully')
+                showSuccessMsg('Note Sent to trash')
                 setNotes(notes => notes.filter(note => note.id !== noteId))
             })
-            // .catch(err => showErrorMsg('problem'))
-            .catch(console.log)
+            .catch(err => showErrorMsg('Had a problem trashing mail...'))
     }
 
+    if (notes === null) return <h1 className="loading-notes">Loading...</h1>
 
     return (
         <section className="note-index" >
             <button title="Menu" className="fa burger-icon" onClick={toggleSideBar}></button>
-            <input className="search-input" placeholder="Search" type="text" />
-
-            <CreateContainer loadNotes={loadNotes}/>
+            <NotesFilter defaultFilter={filterBy}
+                onSetFilterBy={onSetFilterBy} />
+            <CreateContainer loadNotes={loadNotes} />
             <NoteList
                 notes={notes}
                 onRemoveNote={onRemoveNote}
-
             />
             <SideBar />
 
-
-
-        </section>
+        </section >
     )
 }
