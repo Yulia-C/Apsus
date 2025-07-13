@@ -482,15 +482,6 @@ function _createMails() {
     return mails
 }
 
-function getFilterFromSearchParams(searchParams) {
-    const txt = searchParams.get('txt') || ''
-    // const minSpeed = searchParams.get('minSpeed') || ''
-
-    return {
-        txt,
-    }
-}
-
 function _setNextPrevMailId(mail) {
     return query().then((mails) => {
         const mailIdx = mails.findIndex((currMail) => currMail.id === mail.id)

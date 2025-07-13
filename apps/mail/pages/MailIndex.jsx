@@ -37,7 +37,6 @@ export function MailIndex() {
     }, [])
 
     useEffect(() => {
-
         loadMails()
         updateCategoryCounts()
         setSearchParams(getTruthyValues(filterBy))
@@ -45,10 +44,8 @@ export function MailIndex() {
     }, [mailId, filterBy])
 
     function loadMails() {
-        mailService.query(filterBy)
-            .then(setMails)
-            .catch(err => console.log('err:', err))
-    }
+            mailService.query(filterBy)
+            .then(setMails).catch(err => console.log('err:', err))       }
 
     function onSetFilterBy(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))

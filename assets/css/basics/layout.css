@@ -1,5 +1,6 @@
 .container:not(footer) {
     padding-inline-start: 1em;
+    height:100vh;
 }
 
 /* App layout */
@@ -19,6 +20,7 @@
 .mail-index {
     position: relative;
     display: grid;
+    height:100vh;
     grid-template-columns: 50px 1fr;
     grid-template-rows: 70px 50px 1fr;
     grid-template-areas:
