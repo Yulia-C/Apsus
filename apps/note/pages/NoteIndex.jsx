@@ -40,14 +40,23 @@ export function NoteIndex() {
     }
 
     function onRemoveNote(noteId) {
-        console.log('noteId:', noteId);
+        noteService.get(noteId).then(note => {
+
+            if (note.isTrash === true)
+                noteService.remove(noteId).then(() => {
+                    showSuccessMsg('Note deleted successfully')
+                    setMails(notes => notes.filter(note => note.id !== noteId))
+                })
+
+        }).catch(err => showErrorMsg('Had a problem deleting note...'))
+
         noteService.getNoteToTrash(noteId)
             .then(note => noteService.save(note))
             .then(() => {
                 showSuccessMsg('Note Sent to trash')
                 setNotes(notes => notes.filter(note => note.id !== noteId))
             })
-            .catch(err => showErrorMsg('Had a problem trashing mail...'))
+            .catch(err => showErrorMsg('Had a problem trashing note...'))
     }
 
     if (notes === null) return <h1 className="loading-notes">Loading...</h1>
