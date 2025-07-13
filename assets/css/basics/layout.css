@@ -44,7 +44,7 @@
 .mail-list-container.main,
 .mail-details.main {
     grid-area: main;
-    margin-inline-start: 1em;
+    margin-inline-start: .5em;
     min-height: 409px;
     margin-block-end: auto;
 }

@@ -24,7 +24,7 @@
 
 .mail-menu.aside.closed {
     position: absolute;
-    width: 50px;
+    width: 40px;
     height: 100%;
     background-color: var(--main-bg-color);
     transition: width 300ms ease-in-out;
