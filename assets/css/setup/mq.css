@@ -27,6 +27,27 @@
         flex-direction: row;
     }
 
+    .mail-menu.closed:hover {
+        width: 150px;
+        transition: width 300ms ease-in-out;
+        box-shadow: 9px -3px 20px 0px var(--hover-color);
+
+        button,
+        span {
+            opacity: 1;
+            transition: opacity 500ms ease-in-out;
+            margin-inline-end: 1em;
+
+            >span.flex {
+                width: 100%;
+            }
+        }
+
+        >.menu-btn.active {
+            background-color: var(--hover-color);
+        }
+    }
+
     .mail-list-container {
         grid-auto-rows: 35px;
         height: fit-content;

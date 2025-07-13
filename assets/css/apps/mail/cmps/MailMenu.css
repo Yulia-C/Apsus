@@ -24,6 +24,7 @@
 
 .mail-menu.aside.closed {
     position: absolute;
+    left:-10px;
     width: 40px;
     height: 100%;
     background-color: var(--main-bg-color);
@@ -34,30 +35,9 @@
     }
 }
 
-.mail-menu.closed:hover {
-    width: 200px;
-    transition: width 300ms ease-in-out;
-    box-shadow: 9px -3px 20px 0px var(--hover-color);
-
-    button,
-    span {
-        opacity: 1;
-        transition: opacity 500ms ease-in-out;
-        margin-inline-end: 1em;
-
-        >span.flex {
-            width: 100%;
-        }
-    }
-
-    >.menu-btn.active {
-        background-color: var(--hover-color);
-    }
-}
-
 .mail-menu.aside.open- {
     height: 100%;
-    width: 200px;
+    width: 150px;
     transition: width 300ms ease-in-out;
     box-shadow: 9px -3px 20px 0px var(--hover-color);
 
