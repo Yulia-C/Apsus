@@ -8,9 +8,11 @@ export function MailEdit({ isModalOpen, onCloseModal, mailId }) {
 
     useEffect(() => {
         if (mailId) {
+
             loadMailToEdit()
             console.log('mailId:', mailId)
         }
+
     }, [mailId])
 
     function loadMailToEdit() {
@@ -30,7 +32,7 @@ export function MailEdit({ isModalOpen, onCloseModal, mailId }) {
     }
 
     function onSendMail(ev) {
-        ev.preventDefault()
+        // ev.preventDefault()
 
         const { id, ...mailWithoutId } = mailToEdit
         const timedMail = {
@@ -57,19 +59,13 @@ export function MailEdit({ isModalOpen, onCloseModal, mailId }) {
         if (value === 'to')
             if (target.type === 'checkbox') value = target.checked
             else if (target.type === 'range') value = +value
-        setCurrentDraft(prevMail => ({ ...prevMail, [field]: value }))
         setMailToEdit(prevMail => ({ ...prevMail, [field]: value }))
+        setCurrentDraft(prevMail => ({ ...prevMail, [field]: value }))
     }
 
     const [currentDraft, setCurrentDraft] = useState(null)
 
     useEffect(() => {
-        const timeOut = setTimeout(() => {
-            if (currentDraft)
-                onSaveToDraft(currentDraft)
-        }, 3000)
-
-        return () => clearTimeout(timeOut)
 
     }, [currentDraft])
 
