@@ -1,6 +1,6 @@
 /* Mobile */
 
-@media(max-width:350px) {
+@media(max-width:450px) {
 
     .mail-filter select,
     label.sentAt {
@@ -8,9 +8,14 @@
         flex-direction: row;
     }
 
-.mail-logo,
+    .mail-logo,
     .note-logo {
         width: 2.5rem;
+    }
+
+    .compose-modal form {
+        right: 5px;
+        width: 100%;
     }
 }
 
