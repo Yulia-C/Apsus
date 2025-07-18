@@ -44,7 +44,6 @@ export function CreateContainer({ loadNotes }) {
                 showErrorMsg('Cannot save note!')
             })
             .finally(() => {
-
                 inputRef1.current.value = '';
                 inputRef2.current.value = '';
             })
